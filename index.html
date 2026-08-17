@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khum Mai?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-card">
+        <div class="header">
+            <div class="logo-box">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                </svg>
+            </div>
+            <h1 class="title">Khum Mai? 🤔</h1>
+            <p class="subtitle">Check unit price, auto convert units ✨</p>
+        </div>
+
+        <div class="compare-grid">
+            <!-- สินค้า A -->
+            <div class="item-card" id="boxA">
+                <span class="badge-winner">คุ้มสุด! 🏆</span>
+                <div class="card-header">
+                    <span class="card-title">📦 สินค้า A</span>
+                </div>
+                <div class="input-group">
+                    <label for="priceA">ราคารวม (บาท)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="priceA" placeholder="เช่น 120" step="any">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="piecesA">จำนวนชิ้น/ซอง</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="piecesA" value="1" placeholder="เช่น 1" step="any">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="unitA">ปริมาณต่อชิ้น</label>
+                    <div class="input-wrapper flex-input">
+                        <input type="number" id="unitA" placeholder="เช่น 1.5" step="any">
+                        <select id="typeA">
+                            <option value="g">กรัม (g)</option>
+                            <option value="kg">กิโลกรัม (kg)</option>
+                            <option value="ml">มิลลิลิตร (ml)</option>
+                            <option value="l">ลิตร (L)</option>
+                            <option value="pc">ชิ้น / แผ่น</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="unit-result" id="resultA"></div>
+            </div>
+
+            <!-- สินค้า B -->
+            <div class="item-card" id="boxB">
+                <span class="badge-winner">คุ้มสุด! 🏆</span>
+                <div class="card-header">
+                    <span class="card-title">🛍️ สินค้า B</span>
+                </div>
+                <div class="input-group">
+                    <label for="priceB">ราคารวม (บาท)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="priceB" placeholder="เช่น 100" step="any">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="piecesB">จำนวนชิ้น/ซอง</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="piecesB" value="1" placeholder="เช่น 1" step="any">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="unitB">ปริมาณต่อชิ้น</label>
+                    <div class="input-wrapper flex-input">
+                        <input type="number" id="unitB" placeholder="เช่น 500" step="any">
+                        <select id="typeB">
+                            <option value="g">กรัม (g)</option>
+                            <option value="kg">กิโลกรัม (kg)</option>
+                            <option value="ml">มิลลิลิตร (ml)</option>
+                            <option value="l">ลิตร (L)</option>
+                            <option value="pc">ชิ้น / แผ่น</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="unit-result" id="resultB"></div>
+            </div>
+        </div>
+
+        <button class="btn-calc" onclick="calculateComparison()">⚡ คำนวณเปรียบเทียบเลย</button>
+        <div class="result-banner" id="finalResult"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
