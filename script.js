@@ -13,8 +13,9 @@ function calculateComparison() {
     const boxB = document.getElementById('boxB');
     const finalResult = document.getElementById('finalResult');
 
-    boxA.classList.remove('winner');
-    boxB.classList.remove('winner');
+    // เคลียร์คลาสและเอฟเฟกต์เก่าออกก่อน
+    boxA.classList.remove('winner', 'best-deal');
+    boxB.classList.remove('winner', 'best-deal');
     finalResult.style.display = 'block';
 
     if (!priceA || !unitA || !priceB || !unitB || unitA <= 0 || unitB <= 0 || piecesA <= 0 || piecesB <= 0) {
@@ -39,13 +40,13 @@ function calculateComparison() {
     document.getElementById('resultB').innerText = `เฉลี่ย ${rateB.toFixed(3)} บาท/หน่วย`;
 
     if (rateA < rateB) {
-        boxA.classList.add('winner');
+        boxA.classList.add('winner', 'best-deal');
         const percent = (((rateB - rateA) / rateB) * 100).toFixed(1);
         finalResult.innerText = `🎉 สินค้า A คุ้มค่ากว่า! (ประหยัดได้ ${percent}%)`;
         finalResult.style.background = "#ecfdf5";
         finalResult.style.color = "#047857";
     } else if (rateB < rateA) {
-        boxB.classList.add('winner');
+        boxB.classList.add('winner', 'best-deal');
         const percent = (((rateA - rateB) / rateA) * 100).toFixed(1);
         finalResult.innerText = `🎉 สินค้า B คุ้มค่ากว่า! (ประหยัดได้ ${percent}%)`;
         finalResult.style.background = "#ecfdf5";
