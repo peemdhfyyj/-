@@ -1,4 +1,7 @@
-/* พื้นหลังและโครงสร้างหลัก */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 20px;
@@ -17,52 +20,86 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 400px;
+    max-width: 520px;
+    text-align: center;
 }
 
-/* ตั้งค่าให้กล่องสินค้า A และ B อยู่คนละฝั่ง */
-.product-container {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
+/* คุมขนาดรูปไอคอนโลโก้ไม่ให้ขยายใหญ่ */
+.main-card img, img {
+    width: 54px !important;
+    height: 54px !important;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 0 auto 10px auto;
+    display: block;
 }
 
-.box {
+/* คุมส่วนหัวข้อและรายละเอียด */
+.main-card h2, .main-card h3 {
+    margin: 5px 0;
+}
+
+/* บังคับให้พื้นที่กล่องสินค้า A และ B เรียงคู่กันแนวนอน */
+#boxA, #boxB {
     flex: 1;
+    min-width: 0;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: left;
 }
 
-/* ปรับแต่งช่องกรอกข้อมูลให้สวยงาม */
+/* ดักจับ Container ของกล่องสินค้าเพื่อเปิดใช้ Flexbox แนวนอน */
+.main-card > div:has(#boxA),
+.main-card > form,
+.product-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+/* ช่องใส่ปริมาณและเลือกหน่วยให้อยู่แนวนอนคู่กัน */
+.input-group, div:has(> select) {
+    display: flex;
+    gap: 6px;
+}
+
 input, select {
     width: 100%;
     padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     font-family: 'Kanit', sans-serif;
+    font-size: 13px;
+    background: #ffffff;
+    outline: none;
 }
 
-/* ปุ่มคำนวณสีม่วง */
+/* ปุ่มคำนวณสีม่วงด้านล่าง */
 button {
     width: 100%;
     padding: 12px;
     background-color: #6366f1;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
+    font-family: 'Kanit', sans-serif;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 button:hover {
     background-color: #4f46e5;
 }
 
-/* สไตล์เมื่อเป็นผู้ชนะ (winner) */
+/* ไฮไลต์ฝั่งที่ชนะ */
 .winner {
-    border: 2px solid #22c55e;
-    background-color: #f0fdf4;
-    padding: 10px;
-    border-radius: 10px;
+    border: 2px solid #10b981 !important;
+    background-color: #ecfdf5 !important;
 }
