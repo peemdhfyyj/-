@@ -235,3 +235,16 @@ button {
     0% { transform: scale(1); }
     100% { transform: scale(1.1); }
 }
+/* คืนค่าธีมสีสำหรับหน้าสมาชิก */
+body.members-page {
+    background: #a8ff78;
+    background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);
+    background: linear-gradient(to right, #78ffd6, #a8ff78);
+    animation: none;
+    min-height: 100vh;
+}
+
+body.members-page .main-card {
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
