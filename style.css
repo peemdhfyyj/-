@@ -62,3 +62,44 @@ body {
         transform: scale(1);
     }
 }
+/* ---- ลูกเล่นส่วนแสดงผลลัพธ์คุ้มที่สุด ---- */
+
+/* กรอบไฮไลต์ฝั่งที่คุ้มกว่า */
+.best-deal {
+    border: 2.5px solid #22c55e !important;
+    background-color: #f0fdf4 !important;
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25) !important;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+/* ป้ายคำว่า "คุ้มที่สุด!" ลอยอยู่ด้านบนการ์ด */
+.best-deal::before {
+    content: "👑 คุ้มที่สุด!";
+    position: absolute;
+    top: -14px;
+    right: 15px;
+    background: linear-gradient(135deg, #eab308, #ca8a04);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.4);
+    animation: popBadge 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Animation เด้งของป้าย */
+@keyframes popBadge {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Animation แสงวาบเรืองแสง */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2); }
+    100% { box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4); }
+}
