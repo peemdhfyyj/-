@@ -9,17 +9,17 @@
 }
 
 /* ==========================================
-   พื้นหลังสีพาสเทลแบบสดใส (Vibrant Pastel) รวมสีเปลี่ยนโทนตลอดเวลา
+   พื้นหลังสีพาสเทลแบบสดใส (Vibrant Pastel) เคลื่อนไหว
    ========================================== */
 html, body, body.members-page {
     background: linear-gradient(
         135deg, 
-        #ff9a9e, /* ชมพูพาสเทลสด */
-        #fecfef, /* ชมพูม่วงพาสเทล */
-        #a1c4fd, /* ฟ้าพาสเทลสด */
-        #c2e9fb, /* ฟ้าอ่อนพาสเทล */
-        #abecd6, /* เขียวมิ้นต์พาสเทล */
-        #fbed96  /* เหลืองพาสเทลสด */
+        #ff9a9e, 
+        #fecfef, 
+        #a1c4fd, 
+        #c2e9fb, 
+        #abecd6, 
+        #fbed96  
     ) !important;
     background-size: 300% 300% !important;
     animation: vibrantPastelMove 10s ease-in-out infinite !important;
