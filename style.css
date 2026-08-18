@@ -110,7 +110,7 @@ body, body.members-page {
 }
 
 /* ==========================================
-   กรอบสินค้า A และ B (สีเข้มชัด)
+   กรอบสินค้า A และ B
    ========================================== */
 .product-container {
     display: flex;
@@ -128,6 +128,7 @@ body, body.members-page {
     text-align: left;
     position: relative;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
 }
 
 #boxA {
@@ -147,17 +148,20 @@ body, body.members-page {
     margin-bottom: 10px;
 }
 
+/* ป้ายผู้ชนะ */
 .badge-winner {
     display: none;
     position: absolute;
-    top: -10px;
+    top: -12px;
     right: 15px;
     background: #00d2ff;
     color: white;
-    padding: 3px 10px;
-    border-radius: 8px;
+    padding: 4px 12px;
+    border-radius: 10px;
     font-size: 11.5px;
-    font-weight: 400;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 210, 255, 0.4);
+    z-index: 10;
 }
 
 label {
@@ -259,7 +263,6 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
-/* กรอบรูปวงกลมสีรุ้งเข้ม ขยับตลอดเวลา */
 .img-wrapper {
     width: 68px;
     height: 68px;
@@ -308,11 +311,18 @@ button:hover {
     color: #777;
     font-weight: 300;
 }
+
 /* ==========================================
    อนิเมชั่นสำหรับการแสดงผลสินค้าที่คุ้มกว่า
    ========================================== */
 .winner-card {
     animation: popWinner 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.3) !important;
+}
+
+.winner-card .badge-winner {
+    display: block !important;
+    animation: bounceBadge 0.6s ease infinite alternate;
 }
 
 @keyframes popWinner {
@@ -325,10 +335,6 @@ button:hover {
     100% {
         transform: scale(1.02);
     }
-}
-
-.badge-winner {
-    animation: bounceBadge 0.6s ease infinite alternate;
 }
 
 @keyframes bounceBadge {
