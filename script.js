@@ -1,58 +1,55 @@
-function calculateComparison() {
+function calculate() {
+    // รับค่า สินค้า A
     const priceA = parseFloat(document.getElementById('priceA').value);
-    const piecesA = parseFloat(document.getElementById('piecesA').value) || 1;
-    let unitA = parseFloat(document.getElementById('unitA').value);
-    const typeA = document.getElementById('typeA').value;
+    const quantityA = parseFloat(document.getElementById('quantityA').value) || 1;
+    const unitAmountA = parseFloat(document.getElementById('unitAmountA').value);
+    const unitTypeA = document.getElementById('unitTypeA').value;
 
+    // รับค่า สินค้า B
     const priceB = parseFloat(document.getElementById('priceB').value);
-    const piecesB = parseFloat(document.getElementById('piecesB').value) || 1;
-    let unitB = parseFloat(document.getElementById('unitB').value);
-    const typeB = document.getElementById('typeB').value;
+    const quantityB = parseFloat(document.getElementById('quantityB').value) || 1;
+    const unitAmountB = parseFloat(document.getElementById('unitAmountB').value);
+    const unitTypeB = document.getElementById('unitTypeB').value;
 
-    const boxA = document.getElementById('boxA');
-    const boxB = document.getElementById('boxB');
-    const finalResult = document.getElementById('finalResult');
-
-    boxA.classList.remove('winner');
-    boxB.classList.remove('winner');
-    finalResult.style.display = 'block';
-
-    if (!priceA || !unitA || !priceB || !unitB || unitA <= 0 || unitB <= 0 || piecesA <= 0 || piecesB <= 0) {
-        finalResult.innerText = "⚠️ กรุณากรอกข้อมูลให้ถูกต้องและครบถ้วน";
-        finalResult.style.background = "#fff1f2";
-        finalResult.style.color = "#e11d48";
+    // ตรวจสอบว่ากรอกข้อมูลครบถ้วนหรือไม่
+    if (!priceA || !unitAmountA || !priceB || !unitAmountB) {
+        alert('กรุณากรอกข้อมูลราคาและปริมาณให้ครบถ้วนทั้งสองฝั่งครับ');
         return;
     }
 
-    let baseUnitA = unitA;
-    let baseUnitB = unitB;
-    if (typeA === 'kg' || typeA === 'l') baseUnitA = unitA * 1000;
-    if (typeB === 'kg' || typeB === 'l') baseUnitB = unitB * 1000;
+    // แปลงหน่วยเป็นฐานเดียวกัน (กรัม หรือ มิลลิลิตร)
+    let totalBaseA = unitAmountA * quantityA;
+    if (unitTypeA === 'kg' || unitTypeA === 'l') totalBaseA *= 1000;
 
-    const totalA = piecesA * baseUnitA;
-    const totalB = piecesB * baseUnitB;
+    let totalBaseB = unitAmountB * quantityB;
+    if (unitTypeB === 'kg' || unitTypeB === 'l') totalBaseB *= 1000;
 
-    const rateA = priceA / totalA;
-    const rateB = priceB / totalB;
+    // คำนวณราคา ต่อ 1 หน่วยฐาน
+    const unitPriceA = priceA / totalBaseA;
+    const unitPriceB = priceB / totalBaseB;
 
-    document.getElementById('resultA').innerText = `เฉลี่ย ${rateA.toFixed(3)} บาท/หน่วย`;
-    document.getElementById('resultB').innerText = `เฉลี่ย ${rateB.toFixed(3)} บาท/หน่วย`;
+    // อ้างอิง Element สำหรับแสดงผล
+    const boxA = document.getElementById('boxA');
+    const boxB = document.getElementById('boxB');
+    const summaryBox = document.getElementById('result-summary');
 
-    if (rateA < rateB) {
+    summaryBox.style.display = 'block';
+
+    // เปรียบเทียบความคุ้มค่า
+    if (unitPriceA < unitPriceB) {
         boxA.classList.add('winner');
-        const percent = (((rateB - rateA) / rateB) * 100).toFixed(1);
-        finalResult.innerText = `🎉 สินค้า A คุ้มค่ากว่า! (ประหยัดได้ ${percent}%)`;
-        finalResult.style.background = "#ecfdf5";
-        finalResult.style.color = "#047857";
-    } else if (rateB < rateA) {
+        boxB.classList.remove('winner');
+        summaryBox.className = 'summary-a';
+        summaryBox.innerHTML = '🎉 สินค้า A คุ้มค่ากว่า!';
+    } else if (unitPriceB < unitPriceA) {
         boxB.classList.add('winner');
-        const percent = (((rateA - rateB) / rateA) * 100).toFixed(1);
-        finalResult.innerText = `🎉 สินค้า B คุ้มค่ากว่า! (ประหยัดได้ ${percent}%)`;
-        finalResult.style.background = "#ecfdf5";
-        finalResult.style.color = "#047857";
+        boxA.classList.remove('winner');
+        summaryBox.className = 'summary-b';
+        summaryBox.innerHTML = '🚀 สินค้า B คุ้มค่ากว่า!';
     } else {
-        finalResult.innerText = "⚖️ ทั้งสองตัวเลือกคุ้มค่าเท่ากัน!";
-        finalResult.style.background = "#fffbe6";
-        finalResult.style.color = "#d97706";
+        boxA.classList.remove('winner');
+        boxB.classList.remove('winner');
+        summaryBox.className = 'summary-equal';
+        summaryBox.innerHTML = '⚖️ ทั้งสองตัวเลือกคุ้มค่าเท่ากัน!';
     }
 }
