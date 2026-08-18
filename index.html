@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khum Mai? - คำนวณความคุ้มค่า</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="main-card">
         <div class="logo-box">
-            <svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 6c0.6 0 1.2 0.2 1.7 0.6L7 9.8c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6"></path>
-                <path d="M2 12c0.6 0 1.2 0.2 1.7 0.6l3.3 2.6c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6"></path>
-                <path d="M2 18c0.6 0 1.2 0.2 1.7 0.6l3.3 2.6c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6"></path>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
         </div>
 
@@ -24,14 +23,14 @@
         </div>
         <p class="subtitle">Check unit price, auto convert units ✨</p>
 
-        <!-- กล่องข้อความผลลัพธ์คุ้มกว่า -->
+        <!-- กล่องข้อความผลลัพธ์ -->
         <div id="result-summary"></div>
 
         <div class="product-container">
             <!-- สินค้า A -->
             <div class="box" id="boxA">
                 <span class="badge-winner">👑 คุ้มที่สุด!</span>
-                <h3>🏷️ สินค้า A</h3>
+                <h3>📦 สินค้า A</h3>
                 
                 <label for="priceA">ราคารวม (บาท)</label>
                 <input type="number" id="priceA" placeholder="เช่น 120" min="0">
@@ -54,7 +53,7 @@
             <!-- สินค้า B -->
             <div class="box" id="boxB">
                 <span class="badge-winner">👑 คุ้มที่สุด!</span>
-                <h3>🛍️ สินค้า B</h3>
+                <h3>🎁 สินค้า B</h3>
 
                 <label for="priceB">ราคารวม (บาท)</label>
                 <input type="number" id="priceB" placeholder="เช่น 100" min="0">
@@ -75,7 +74,7 @@
             </div>
         </div>
 
-        <button onclick="calculate()">⚡ คำนวณเปรียบเทียบเลย</button>
+        <button onclick="calculateCost()">⚡ คำนวณเปรียบเทียบเลย</button>
     </div>
 
     <script src="script.js"></script>
