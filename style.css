@@ -1,4 +1,3 @@
-/* ตั้งค่าพื้นหลังและจัดให้อยู่ตรงกลาง */
 body {
     margin: 0;
     padding: 20px;
@@ -10,7 +9,6 @@ body {
     align-items: center;
 }
 
-/* การ์ดหลัก พร้อมเอฟเฟกต์เด้งตอนเปิดหน้าเว็บ */
 .main-card {
     background: white;
     padding: 24px;
@@ -18,88 +16,28 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     width: 100%;
     max-width: 400px;
-    
-    /* เรียกใช้ Animation เด้ง */
     animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* เอฟเฟกต์การ์ดรายชื่อแต่ละคน */
-.main-card > div > div {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* เวลาเอาเมาส์ชี้หรือแตะที่รายชื่อ ให้เมาส์เปลี่ยนรูปและเด้งขึ้นนุ่มๆ */
-.main-card > div > div:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    background-color: #faf5ff;
-    cursor: pointer;
-}
-
-/* เอฟเฟกต์รูปโปรไฟล์หมุนเล็กน้อยเวลาชี้ */
-.main-card img {
-    transition: transform 0.3s ease;
-}
-
-.main-card > div > div:hover img {
-    transform: scale(1.1) rotate(5deg);
-}
-
-/* กำหนดจังหวะการเด้ง (Keyframes) */
-@keyframes bounceIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.3);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-    70% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-/* ---- ลูกเล่นส่วนแสดงผลลัพธ์คุ้มที่สุด ---- */
-
-/* กรอบไฮไลต์ฝั่งที่คุ้มกว่า */
-.best-deal {
-    border: 2.5px solid #22c55e !important;
-    background-color: #f0fdf4 !important;
+/* เอฟเฟกต์เด้งและเรืองแสงสำหรับฝั่งที่คุ้มกว่า */
+.winner {
+    border: 2px solid #10b981 !important;
+    background-color: #ecfdf5 !important;
     transform: scale(1.03);
-    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25) !important;
-    position: relative;
-    transition: all 0.3s ease;
-    animation: pulseGlow 1.5s infinite alternate;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.25) !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: winnerBounce 0.5s ease;
 }
 
-/* ป้ายคำว่า "คุ้มที่สุด!" ลอยอยู่ด้านบนการ์ด */
-.best-deal::before {
-    content: "👑 คุ้มที่สุด!";
-    position: absolute;
-    top: -14px;
-    right: 15px;
-    background: linear-gradient(135deg, #eab308, #ca8a04);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 3px 10px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(234, 179, 8, 0.4);
-    animation: popBadge 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+@keyframes winnerBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1.03); }
 }
 
-/* Animation เด้งของป้าย */
-@keyframes popBadge {
-    0% { transform: scale(0); }
-    80% { transform: scale(1.2); }
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.05); }
+    70% { transform: scale(0.9); }
     100% { transform: scale(1); }
-}
-
-/* Animation แสงวาบเรืองแสง */
-@keyframes pulseGlow {
-    0% { box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2); }
-    100% { box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4); }
 }
