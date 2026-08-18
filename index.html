@@ -12,9 +12,9 @@
     <div class="main-card">
         <div class="logo-box">
             <svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 6c0.6 0 1.2 0.2 1.7 0.6L7 9.8c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6" />
-                <path d="M2 12c0.6 0 1.2 0.2 1.7 0.6l3.3 2.6c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6" />
-                <path d="M2 18c0.6 0 1.2 0.2 1.7 0.6l3.3 2.6c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6" />
+                <path d="M2 6c0.6 0 1.2 0.2 1.7 0.6L7 9.8c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6"></path>
+                <path d="M2 12c0.6 0 1.2 0.2 1.7 0.6l3.3 2.6c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6"></path>
+                <path d="M2 18c0.6 0 1.2 0.2 1.7 0.6l3.3 2.6c1 0.8 2.4 0.8 3.4 0l3.3-2.6c1-0.8 2.4-0.8 3.4 0l3.3 2.6c0.5 0.4 1.1 0.6 1.7 0.6"></path>
             </svg>
         </div>
 
@@ -33,15 +33,15 @@
                 <span class="badge-winner">👑 คุ้มที่สุด!</span>
                 <h3>🏷️ สินค้า A</h3>
                 
-                <label>ราคารวม (บาท)</label>
-                <input type="number" id="priceA" placeholder="เช่น 120">
+                <label for="priceA">ราคารวม (บาท)</label>
+                <input type="number" id="priceA" placeholder="เช่น 120" min="0">
 
-                <label>จำนวนชิ้น/ซอง</label>
-                <input type="number" id="quantityA" value="1">
+                <label for="quantityA">จำนวนชิ้น/ซอง</label>
+                <input type="number" id="quantityA" value="1" min="1">
 
-                <label>ปริมาณต่อชิ้น</label>
+                <label for="unitAmountA">ปริมาณต่อชิ้น</label>
                 <div class="input-group">
-                    <input type="number" id="unitAmountA" placeholder="เช่น 1.5">
+                    <input type="number" id="unitAmountA" placeholder="เช่น 1.5" min="0">
                     <select id="unitTypeA">
                         <option value="g">กรัม (g)</option>
                         <option value="kg">กิโลกรัม (kg)</option>
@@ -56,15 +56,15 @@
                 <span class="badge-winner">👑 คุ้มที่สุด!</span>
                 <h3>🛍️ สินค้า B</h3>
 
-                <label>ราคารวม (บาท)</label>
-                <input type="number" id="priceB" placeholder="เช่น 100">
+                <label for="priceB">ราคารวม (บาท)</label>
+                <input type="number" id="priceB" placeholder="เช่น 100" min="0">
 
-                <label>จำนวนชิ้น/ซอง</label>
-                <input type="number" id="quantityB" value="1">
+                <label for="quantityB">จำนวนชิ้น/ซอง</label>
+                <input type="number" id="quantityB" value="1" min="1">
 
-                <label>ปริมาณต่อชิ้น</label>
+                <label for="unitAmountB">ปริมาณต่อชิ้น</label>
                 <div class="input-group">
-                    <input type="number" id="unitAmountB" placeholder="เช่น 500">
+                    <input type="number" id="unitAmountB" placeholder="เช่น 500" min="0">
                     <select id="unitTypeB">
                         <option value="g">กรัม (g)</option>
                         <option value="kg">กิโลกรัม (kg)</option>
