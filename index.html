@@ -3,49 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>คุ้มไหม? - คำนวณความคุ้มค่าสินค้า</title>
+    <title>VSS - ระบบเปรียบเทียบราคาสินค้า</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="main-card">
-        <!-- โลโก้แบบโมเดิร์น -->
+        <!-- โลโก้ & ปุ่มไปหน้าสมาชิก -->
         <div class="logo-box">
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="12" y="22" width="18" height="8" rx="4" fill="white" transform="rotate(-12 12 22)" />
-                <rect x="12" y="36" width="18" height="8" rx="4" fill="white" opacity="0.8" transform="rotate(-12 12 36)" />
-                <rect x="34" y="28" width="18" height="8" rx="4" fill="#ffea00" transform="rotate(-12 34 28)" />
-                <rect x="34" y="42" width="18" height="8" rx="4" fill="#ffea00" opacity="0.8" transform="rotate(-12 34 42)" />
-                <path d="M48 14L49.5 18.5L54 20L49.5 21.5L48 26L46.5 21.5L42 20L46.5 18.5L48 14Z" fill="white"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
             </svg>
         </div>
 
         <div class="title-row">
-            <h1 class="title">คุ้มไหม?</h1>
+            <h1 class="title">VSS</h1>
             <a href="members.html" class="btn-members">👥 สมาชิก</a>
         </div>
-        <p class="subtitle">เปรียบเทียบราคาต่อหน่วยเพื่อเลือกสิ่งที่ดีที่สุด</p>
+        <p class="subtitle">ระบบเปรียบเทียบราคาและปริมาณสินค้าคุ้มค่าที่สุด</p>
 
-        <!-- สรุปผลลัพธ์ -->
-        <div id="result-summary"></div>
-
-        <!-- สินค้า A และ B -->
+        <!-- กรอบสินค้า A และ B -->
         <div class="product-container">
             <!-- สินค้า A -->
             <div class="box" id="boxA">
-                <span class="badge-winner">👑 คุ้มที่สุด!</span>
-                <h3>สินค้า A</h3>
-                
-                <label>ราคา (บาท)</label>
-                <input type="number" id="priceA" placeholder="เช่น 100">
+                <div class="badge-winner">คุ้มสุด!</div>
+                <h3>📦 สินค้า A</h3>
+                <label for="priceA">ราคา (บาท):</label>
+                <input type="number" id="priceA" placeholder="เช่น 50" step="any">
 
-                <label>จำนวนชิ้น (ถ้ามี)</label>
-                <input type="number" id="quantityA" placeholder="เช่น 1 (ไม่กรอก = 1)">
-
-                <label>ปริมาณ / น้ำหนัก ต่อชิ้น</label>
+                <label for="amountA">ปริมาณ:</label>
                 <div class="input-group">
-                    <input type="number" id="unitAmountA" placeholder="เช่น 500">
-                    <select id="unitTypeA">
+                    <input type="number" id="amountA" placeholder="เช่น 500" step="any">
+                    <select id="unitA">
                         <option value="g">กรัม (g)</option>
                         <option value="kg">กิโลกรัม (kg)</option>
                         <option value="ml">มิลลิลิตร (ml)</option>
@@ -57,19 +48,15 @@
 
             <!-- สินค้า B -->
             <div class="box" id="boxB">
-                <span class="badge-winner">👑 คุ้มที่สุด!</span>
-                <h3>สินค้า B</h3>
+                <div class="badge-winner">คุ้มสุด!</div>
+                <h3>📦 สินค้า B</h3>
+                <label for="priceB">ราคา (บาท):</label>
+                <input type="number" id="priceB" placeholder="เช่น 90" step="any">
 
-                <label>ราคา (บาท)</label>
-                <input type="number" id="priceB" placeholder="เช่น 150">
-
-                <label>จำนวนชิ้น (ถ้ามี)</label>
-                <input type="number" id="quantityB" placeholder="เช่น 1 (ไม่กรอก = 1)">
-
-                <label>ปริมาณ / น้ำหนัก ต่อชิ้น</label>
+                <label for="amountB">ปริมาณ:</label>
                 <div class="input-group">
-                    <input type="number" id="unitAmountB" placeholder="เช่น 900">
-                    <select id="unitTypeB">
+                    <input type="number" id="amountB" placeholder="เช่น 1000" step="any">
+                    <select id="unitB">
                         <option value="g">กรัม (g)</option>
                         <option value="kg">กิโลกรัม (kg)</option>
                         <option value="ml">มิลลิลิตร (ml)</option>
@@ -80,9 +67,69 @@
             </div>
         </div>
 
-        <button onclick="calculateCost()">⚡ คำนวณความคุ้มค่า</button>
+        <!-- กล่องแสดงผลลัพธ์ -->
+        <div id="result-summary"></div>
+
+        <!-- ปุ่มคำนวณ -->
+        <button id="calcBtn" onclick="calculate()">⚡ เปรียบเทียบความคุ้มค่า</button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Script คำนวณความคุ้มค่า -->
+    <script>
+        function calculate() {
+            const priceA = parseFloat(document.getElementById('priceA').value);
+            const amountA = parseFloat(document.getElementById('amountA').value);
+            const unitA = document.getElementById('unitA').value;
+
+            const priceB = parseFloat(document.getElementById('priceB').value);
+            const amountB = parseFloat(document.getElementById('amountB').value);
+            const unitB = document.getElementById('unitB').value;
+
+            const boxA = document.getElementById('boxA');
+            const boxB = document.getElementById('boxB');
+            const summary = document.getElementById('result-summary');
+
+            boxA.classList.remove('winner-card');
+            boxB.classList.remove('winner-card');
+            summary.style.display = 'none';
+
+            if (!priceA || !amountA || !priceB || !amountB) {
+                alert('กรุณากรอกราคาและปริมาณของทั้งสองสินค้าให้ครบถ้วนครับ');
+                return;
+            }
+
+            let normalizedA = amountA;
+            let normalizedB = amountB;
+
+            if (unitA === 'kg' || unitA === 'l') normalizedA = amountA * 1000;
+            if (unitB === 'kg' || unitB === 'l') normalizedB = amountB * 1000;
+
+            const unitPriceA = priceA / normalizedA;
+            const unitPriceB = priceB / normalizedB;
+
+            summary.style.display = 'block';
+
+            if (unitPriceA < unitPriceB) {
+                boxA.classList.add('winner-card');
+                const diff = (((unitPriceB - unitPriceA) / unitPriceB) * 100).toFixed(1);
+                summary.innerHTML = `🎉 <strong>สินค้า A คุ้มค่ากว่า!</strong> ประหยัดได้ประมาณ <strong>${diff}%</strong>`;
+                summary.style.background = '#e8f5e9';
+                summary.style.color = '#2e7d32';
+                summary.style.borderColor = '#a5d6a7';
+            } else if (unitPriceB < unitPriceA) {
+                boxB.classList.add('winner-card');
+                const diff = (((unitPriceA - unitPriceB) / unitPriceA) * 100).toFixed(1);
+                summary.innerHTML = `🎉 <strong>สินค้า B คุ้มค่ากว่า!</strong> ประหยัดได้ประมาณ <strong>${diff}%</strong>`;
+                summary.style.background = '#fff0f3';
+                summary.style.color = '#c2185b';
+                summary.style.borderColor = '#ff80ab';
+            } else {
+                summary.innerHTML = `⚖️ <strong>ทั้งสองสินค้ามีราคาและความคุ้มค่าเท่ากันครับ!</strong>`;
+                summary.style.background = '#e3f2fd';
+                summary.style.color = '#1565c0';
+                summary.style.borderColor = '#90caf9';
+            }
+        }
+    </script>
 </body>
 </html>
