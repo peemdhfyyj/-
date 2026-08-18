@@ -1,5 +1,4 @@
 function calculateCost() {
-    // ดึงค่าจากหน้าเว็บ
     const priceA = parseFloat(document.getElementById('priceA').value);
     const quantityA = parseFloat(document.getElementById('quantityA').value) || 1;
     const unitAmountA = parseFloat(document.getElementById('unitAmountA').value);
@@ -22,16 +21,16 @@ function calculateCost() {
     boxA.classList.remove('winner-card');
     boxB.classList.remove('winner-card');
 
-    // ตรวจสอบว่ากรอกข้อมูลครบถ้วนหรือไม่
+    // ตรวจสอบว่ากรอกข้อมูลครบหรือไม่
     if (!priceA || !unitAmountA || !priceB || !unitAmountB) {
         resultBox.style.display = 'block';
         resultBox.style.background = '#ffebee';
         resultBox.style.color = '#c62828';
-        resultBox.innerText = '⚠️ กรุณากรอกข้อมูลให้ครบถ้วนครับ';
+        resultBox.innerText = '⚠️ กรุณากรอกข้อมูลราคาและปริมาณให้ครบถ้วนครับ';
         return;
     }
 
-    // แปลงหน่วยเป็นหน่วยฐาน (กรัม หรือ มิลลิลิตร)
+    // แปลงเป็นหน่วยฐาน (กรัม หรือ มิลลิลิตร)
     let totalUnitA = quantityA * unitAmountA;
     if (unitTypeA === 'kg' || unitTypeA === 'l') totalUnitA *= 1000;
 
@@ -55,7 +54,6 @@ function calculateCost() {
         resultBox.style.color = '#2e7d32';
         resultBox.innerText = `🎉 สินค้า A คุ้มค่ากว่าประมาณ ${diffPercent}%`;
 
-        // แสดงป้ายคุ้มที่สุด และเพิ่มอนิเมชั่น
         badgeA.style.display = 'block';
         boxA.classList.add('winner-card');
     } else {
@@ -64,7 +62,6 @@ function calculateCost() {
         resultBox.style.color = '#2e7d32';
         resultBox.innerText = `🎉 สินค้า B คุ้มค่ากว่าประมาณ ${diffPercent}%`;
 
-        // แสดงป้ายคุ้มที่สุด และเพิ่มอนิเมชั่น
         badgeB.style.display = 'block';
         boxB.classList.add('winner-card');
     }
