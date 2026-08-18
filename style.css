@@ -9,12 +9,21 @@
 }
 
 /* ==========================================
-   พื้นหลังสีรุ้งเข้มสดใส ขยับเปลี่ยนสีตลอดเวลา (ทั้ง 2 หน้า)
+   พื้นหลังสีรุ้งครบ 7 สี ขยับเปลี่ยนสีตลอดเวลา (เรียงสีรุ้ง)
    ========================================== */
 body, body.members-page {
-    background: linear-gradient(-45deg, #ff2a75, #9b51e0, #00d2ff, #00e676, #ffea00) !important;
-    background-size: 400% 400% !important;
-    animation: vibrantRainbow 7s ease infinite !important;
+    background: linear-gradient(
+        -45deg, 
+        #8b00ff, /* ม่วง */
+        #4b0082, /* คราม */
+        #0000ff, /* น้ำเงิน */
+        #00e676, /* เขียว */
+        #ffea00, /* เหลือง */
+        #ff7d00, /* แสด */
+        #ff0055  /* แดง */
+    ) !important;
+    background-size: 600% 600% !important;
+    animation: fullRainbowMove 10s ease infinite !important;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -22,7 +31,7 @@ body, body.members-page {
     padding: 30px 15px;
 }
 
-@keyframes vibrantRainbow {
+@keyframes fullRainbowMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
@@ -35,7 +44,7 @@ body, body.members-page {
     background: rgba(255, 255, 255, 0.98);
     border-radius: 28px;
     padding: 35px 25px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
     width: 100%;
     max-width: 800px;
     text-align: center;
@@ -79,7 +88,7 @@ body, body.members-page {
 .title {
     font-size: 26px;
     font-weight: 500;
-    color: #ff2a75;
+    color: #ff0055;
 }
 
 .subtitle {
@@ -93,14 +102,14 @@ body, body.members-page {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: #ff2a75;
+    background: #ff0055;
     color: white !important;
     text-decoration: none;
     padding: 6px 14px;
     border-radius: 16px;
     font-size: 12.5px;
     font-weight: 400;
-    box-shadow: 0 3px 10px rgba(255, 42, 117, 0.3);
+    box-shadow: 0 3px 10px rgba(255, 0, 85, 0.3);
     transition: all 0.2s ease;
     border: none;
 }
@@ -137,7 +146,7 @@ body, body.members-page {
 }
 
 #boxB {
-    border: 2.5px solid #ff2a75;
+    border: 2.5px solid #ff0055;
     background: #fff5f8;
 }
 
@@ -186,7 +195,7 @@ input, select {
 }
 
 input:focus, select:focus {
-    border-color: #ff2a75;
+    border-color: #ff0055;
 }
 
 .input-group {
@@ -263,18 +272,19 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
+/* กรอบรูปวงกลมสีรุ้ง 7 สี ขยับตลอดเวลา */
 .img-wrapper {
     width: 68px;
     height: 68px;
     border-radius: 50%;
     padding: 3px;
-    background: linear-gradient(45deg, #ff2a75, #9b51e0, #00d2ff, #00e676, #ffea00);
-    background-size: 200% 200%;
-    animation: vibrantRainbowCircle 4s linear infinite;
+    background: linear-gradient(45deg, #8b00ff, #0000ff, #00e676, #ffea00, #ff7d00, #ff0055);
+    background-size: 300% 300%;
+    animation: fullRainbowCircle 5s linear infinite;
     margin-bottom: 10px;
 }
 
-@keyframes vibrantRainbowCircle {
+@keyframes fullRainbowCircle {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
@@ -295,7 +305,7 @@ button:hover {
 .member-num {
     font-size: 12px;
     font-weight: 500;
-    color: #ff2a75;
+    color: #ff0055;
 }
 
 .member-name {
@@ -313,39 +323,6 @@ button:hover {
 }
 
 /* ==========================================
-   อนิเมชั่นสำหรับการแสดงผลสินค้าที่คุ้มกว่า
-   ========================================== */
-.winner-card {
-    animation: popWinner 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.3) !important;
-}
-
-.winner-card .badge-winner {
-    display: block !important;
-    animation: bounceBadge 0.6s ease infinite alternate;
-}
-
-@keyframes popWinner {
-    0% {
-        transform: scale(0.95);
-    }
-    50% {
-        transform: scale(1.04);
-    }
-    100% {
-        transform: scale(1.02);
-    }
-}
-
-@keyframes bounceBadge {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-4px);
-    }
-}
-/* ==========================================
    อนิเมชั่นสินค้าที่คุ้มกว่า (เด่นสะดุดตา ลอยโดดเด่น)
    ========================================== */
 .winner-card {
@@ -354,19 +331,16 @@ button:hover {
     z-index: 5;
 }
 
-/* เอฟเฟกต์เฉพาะการ์ด A เมื่อคุ้มกว่า (ขอบเรืองแสงสีเขียวสด) */
 #boxA.winner-card {
     border-color: #00e676 !important;
     box-shadow: 0 10px 30px rgba(0, 230, 118, 0.5), 0 0 20px rgba(0, 230, 118, 0.3) !important;
 }
 
-/* เอฟเฟกต์เฉพาะการ์ด B เมื่อคุ้มกว่า (ขอบเรืองแสงสีชมพูสด) */
 #boxB.winner-card {
-    border-color: #ff2a75 !important;
-    box-shadow: 0 10px 30px rgba(255, 42, 117, 0.5), 0 0 20px rgba(255, 42, 117, 0.3) !important;
+    border-color: #ff0055 !important;
+    box-shadow: 0 10px 30px rgba(255, 0, 85, 0.5), 0 0 20px rgba(255, 0, 85, 0.3) !important;
 }
 
-/* ป้ายคำว่า คุ้มที่สุด แสดงผลและขยับเด้งขึ้นลง */
 .winner-card .badge-winner {
     display: block !important;
     animation: superBounceBadge 0.8s ease infinite alternate !important;
@@ -375,7 +349,6 @@ button:hover {
     padding: 5px 14px !important;
 }
 
-/* จังหวะการเด้งขยายของการ์ด */
 @keyframes superPopWinner {
     0% {
         transform: scale(0.9) translateY(0);
@@ -388,7 +361,6 @@ button:hover {
     }
 }
 
-/* จังหวะดุ๊กดิ๊กของป้ายคุ้มที่สุด */
 @keyframes superBounceBadge {
     0% {
         transform: translateY(0) scale(1);
