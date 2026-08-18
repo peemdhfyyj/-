@@ -9,7 +9,7 @@
 }
 
 /* ==========================================
-   พื้นหลังสีรุ้งครบ 7 สี ขยับเปลี่ยนสีตลอดเวลา (เรียงสีรุ้ง)
+   พื้นหลังสีรุ้งครบ 7 สี ขยับเปลี่ยนสีตลอดเวลา
    ========================================== */
 body, body.members-page {
     background: linear-gradient(
@@ -56,25 +56,29 @@ body, body.members-page {
 }
 
 /* ==========================================
-   ส่วนหัวและปุ่ม
+   โลโก้โมเดิร์น มินิมอล
    ========================================== */
 .logo-box {
-    width: 50px;
-    height: 50px;
-    background: #00d2ff;
-    color: white;
-    border-radius: 14px;
+    width: 54px !important;
+    height: 54px !important;
+    background: linear-gradient(135deg, #ff0055 0%, #7600ec 100%) !important;
+    border-radius: 18px !important;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 12px auto;
-    box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 0, 85, 0.35) !important;
+    transition: transform 0.3s ease;
+}
+
+.logo-box:hover {
+    transform: scale(1.08) rotate(-3deg);
 }
 
 .logo-box svg {
-    width: 26px;
-    height: 26px;
-    stroke: #ffffff;
+    width: 38px !important;
+    height: 38px !important;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
 }
 
 .title-row {
@@ -157,7 +161,6 @@ body, body.members-page {
     margin-bottom: 10px;
 }
 
-/* ป้ายผู้ชนะ */
 .badge-winner {
     display: none;
     position: absolute;
@@ -240,7 +243,7 @@ button:hover {
 }
 
 /* ==========================================
-   ส่วนสมาชิก (ขอบรูปสีรุ้งเข้มขยับได้ตลอดเวลา)
+   ส่วนสมาชิก (ขอบรูปสีรุ้งหมุนเคลื่อนไหว)
    ========================================== */
 .members-title {
     font-size: 20px;
@@ -272,7 +275,6 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
-/* กรอบรูปวงกลมสีรุ้ง 7 สี ขยับตลอดเวลา */
 .img-wrapper {
     width: 68px;
     height: 68px;
@@ -323,7 +325,7 @@ button:hover {
 }
 
 /* ==========================================
-   อนิเมชั่นสินค้าที่คุ้มกว่า (เด่นสะดุดตา ลอยโดดเด่น)
+   อนิเมชั่นสินค้าคุ้มสุด (ลอยขึ้น + แสงเรืองออร่า)
    ========================================== */
 .winner-card {
     animation: superPopWinner 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
@@ -350,22 +352,12 @@ button:hover {
 }
 
 @keyframes superPopWinner {
-    0% {
-        transform: scale(0.9) translateY(0);
-    }
-    60% {
-        transform: scale(1.08) translateY(-10px);
-    }
-    100% {
-        transform: scale(1.05) translateY(-8px);
-    }
+    0% { transform: scale(0.9) translateY(0); }
+    60% { transform: scale(1.08) translateY(-10px); }
+    100% { transform: scale(1.05) translateY(-8px); }
 }
 
 @keyframes superBounceBadge {
-    0% {
-        transform: translateY(0) scale(1);
-    }
-    100% {
-        transform: translateY(-6px) scale(1.1);
-    }
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-6px) scale(1.1); }
 }
