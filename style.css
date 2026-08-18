@@ -13,23 +13,26 @@ body {
     align-items: center;
 }
 
-/* การ์ดหลักตรงกลาง - ขยายขนาดให้กว้างพอสำหรับ 2 คอลัมน์ */
+/* กรอบการ์ดหลัก */
 .main-card {
     background: white;
     padding: 28px;
     border-radius: 24px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 680px !important;
+    max-width: 650px;
     text-align: center;
 }
 
-/* จัดส่วนโลโก้ SVG ตรงกลาง */
+.members-card {
+    max-width: 850px;
+}
+
+/* ส่วนโลโก้และหัวข้อ */
 .logo-box {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 0 auto 10px auto;
+    margin-bottom: 12px;
 }
 
 .logo-box svg {
@@ -41,22 +44,47 @@ body {
     border-radius: 14px;
 }
 
-/* บังคับให้พื้นที่ส่วนสินค้า A และ B วางขนานกันแนวนอน 2 คอลัมน์ */
-.main-card > div:has(#boxA),
-.main-card > form,
-.product-container,
-div[style*="display: flex"] {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 16px !important;
-    justify-content: space-between !important;
+.title-row {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* ตั้งค่ากล่องสินค้า A และ B ให้มีขนาดเท่ากัน */
-#boxA, #boxB,
-.box, .card-input {
-    flex: 1 !important;
-    width: 50% !important;
+.title {
+    margin: 0;
+    font-size: 26px;
+    color: #1e293b;
+}
+
+.btn-members {
+    position: absolute;
+    right: 0;
+    background: #eef2ff;
+    color: #4f46e5;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 20px;
+}
+
+/* กล่องสินค้า A และ B แนวกว้างขนานกัน */
+.product-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.box {
+    flex: 1;
     background: #f8fafc;
     border: 1px solid #f1f5f9;
     border-radius: 16px;
@@ -64,11 +92,23 @@ div[style*="display: flex"] {
     text-align: left;
 }
 
-/* ช่องกรอกข้อมูล */
+.box h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #334155;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
 input, select {
     width: 100%;
     padding: 8px 10px;
-    margin-top: 4px;
     margin-bottom: 10px;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
@@ -78,10 +118,21 @@ input, select {
     outline: none;
 }
 
-/* ปุ่มคำนวณสีม่วงยาวเต็มความกว้าง */
-button, .btn-submit {
-    width: 100% !important;
-    margin-top: 16px;
+.input-group {
+    display: flex;
+    gap: 6px;
+}
+
+.unit-result {
+    font-size: 13px;
+    color: #475569;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* ปุ่มคำนวณสีม่วง */
+button {
+    width: 100%;
     padding: 14px;
     border: none;
     border-radius: 14px;
@@ -98,34 +149,64 @@ button:hover {
     background: linear-gradient(135deg, #4f46e5, #7c3aed);
 }
 
-/* แถบแสดงผลลัพธ์ */
 #finalResult {
     margin-top: 16px;
     padding: 12px;
     border-radius: 12px;
     font-weight: bold;
+    font-size: 14px;
 }
 
-/* ไฮไลต์ผู้ชนะ */
+/* สไตล์ไฮไลต์ผู้ชนะ */
 .winner {
     border: 2px solid #10b981 !important;
     background-color: #ecfdf5 !important;
 }
-/* จัดให้คำว่า Khum Mai? อยู่ตรงกลางเป๊ะ */
-.title, h1 {
-    text-align: center !important;
-    width: 100%;
-    margin: 0 auto !important;
+
+/* ---- จัดระเบียบหน้าสมาชิกผู้จัดทำ ---- */
+.members-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
 }
 
-/* ปรับพื้นที่ส่วนหัวเรื่องให้จัดกึ่งกลาง */
-div:has(> .title) {
-    position: relative !important;
-    justify-content: center !important;
+.member-box {
+    flex: 0 1 calc(20% - 10px);
+    min-width: 130px;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 16px;
+    padding: 12px;
+    text-align: center;
 }
 
-/* ย้ายปุ่มสมาชิกไปชิดขวา เพื่อไม่ให้ดันข้อความหลุดศูนย์กลาง */
-a[href*="members"] {
-    position: absolute !important;
-    right: 0 !important;
+.member-box img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.member-box h4 {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #1e293b;
+}
+
+.member-box p {
+    margin: 0;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.btn-back {
+    display: inline-block;
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10px;
 }
