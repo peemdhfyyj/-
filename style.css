@@ -9,58 +9,69 @@
 }
 
 /* ==========================================
-   พื้นหลังสายรุ้งสุดเด่น (Animated Rainbow Gradient)
+   หน้าหลัก: พื้นหลังสีเขียว-ฟ้าสดใส (index.html)
    ========================================== */
 body {
-    background: linear-gradient(-45deg, #ff007f, #7f00ff, #00d2ff, #00f2fe, #4facfe, #00ff87);
-    background-size: 400% 400%;
-    animation: rainbowBG 12s ease infinite;
+    background: linear-gradient(135deg, #78ffd6, #a8ff78);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 10px;
+    padding: 30px 15px;
 }
 
-@keyframes rainbowBG {
+/* ==========================================
+   หน้าสมาชิก: พื้นหลังสายรุ้งสดใสขยับได้ (members.html)
+   ========================================== */
+body.members-page {
+    background: linear-gradient(-45deg, #ff007f, #7f00ff, #00d2ff, #00ff87, #ffea00) !important;
+    background-size: 400% 400% !important;
+    animation: rainbowAnimation 8s ease infinite !important;
+}
+
+@keyframes rainbowAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
 /* ==========================================
-   กล่องการ์ดหลักสีขาวใสเงาเด้ง (Main Container)
+   กล่องขาวหลัก (Main Card)
    ========================================== */
 .main-card, .members-container {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 30px;
-    padding: 35px 25px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5);
+    background: #ffffff;
+    border-radius: 35px;
+    padding: 40px 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     width: 100%;
-    max-width: 980px;
+    max-width: 800px;
     text-align: center;
+    position: relative;
+}
+
+.members-container {
+    max-width: 950px; /* เพิ่มความกว้างการ์ดขาวในหน้าสมาชิก */
 }
 
 /* ==========================================
-   ส่วนหัวและโลโก้ (Header & Logo)
+   โลโก้และส่วนหัว
    ========================================== */
 .logo-box {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #ff007f, #7f00ff);
+    width: 60px;
+    height: 60px;
+    background: #00d2ff;
     color: white;
-    border-radius: 22px;
+    border-radius: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 15px auto;
-    box-shadow: 0 8px 20px rgba(127, 0, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3);
 }
 
 .logo-box svg {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     stroke: #ffffff;
 }
 
@@ -70,46 +81,44 @@ body {
     align-items: center;
     gap: 15px;
     margin-bottom: 5px;
+    position: relative;
 }
 
 .title {
-    font-size: 36px;
-    font-weight: 900;
-    background: linear-gradient(45deg, #ff007f, #7f00ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    font-weight: 800;
+    color: #ff007f;
 }
 
 .subtitle {
     color: #666;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-/* ปุ่มไปหน้าสมาชิก / กลับหน้าหลัก */
 .btn-members, .btn-back {
-    display: inline-block;
-    background: linear-gradient(45deg, #ff007f, #7f00ff);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #ff007f;
     color: white !important;
     text-decoration: none;
-    padding: 10px 22px;
-    border-radius: 25px;
+    padding: 8px 18px;
+    border-radius: 20px;
     font-size: 14px;
     font-weight: 700;
-    box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+    transition: all 0.2s ease;
     border: none;
-    cursor: pointer;
 }
 
 .btn-members:hover, .btn-back:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 0, 127, 0.5);
+    transform: scale(1.05);
 }
 
 /* ==========================================
-   กล่องเปรียบเทียบสินค้า A / B (Product Box)
+   กรอบสินค้า A (เขียว) และ สินค้า B (ชมพู)
    ========================================== */
 .product-container {
     display: flex;
@@ -122,69 +131,70 @@ body {
     flex: 1;
     min-width: 280px;
     background: #ffffff;
-    border: 2px solid #f0f0f0;
     border-radius: 24px;
-    padding: 20px;
+    padding: 22px;
     text-align: left;
     position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+}
+
+#boxA {
+    border: 3.5px solid #2ecc71;
+    background: #f4fff8;
+}
+
+#boxB {
+    border: 3.5px solid #ff4757;
+    background: #fff5f6;
 }
 
 .box h3 {
     font-size: 20px;
     font-weight: 800;
-    color: #2c3e50;
+    color: #1a1a1a;
     margin-bottom: 15px;
 }
 
-/* ป้ายผู้ชนะ คุ้มที่สุด */
 .badge-winner {
     display: none;
     position: absolute;
-    top: -12px;
+    top: -14px;
     right: 20px;
-    background: linear-gradient(45deg, #00b09b, #96c93d);
+    background: #00d2ff;
     color: white;
-    padding: 4px 15px;
+    padding: 5px 14px;
     border-radius: 12px;
     font-size: 13px;
     font-weight: 800;
-    box-shadow: 0 4px 10px rgba(0, 176, 155, 0.4);
-    animation: bounce 0.6s infinite alternate;
+    box-shadow: 0 4px 10px rgba(0, 210, 255, 0.4);
 }
 
-@keyframes bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-4px); }
-}
-
-/* ฟอร์มกรอกข้อมูล */
+/* ช่องกรอกข้อมูล */
 label {
     display: block;
     font-size: 13px;
     font-weight: 700;
-    color: #444;
-    margin-top: 10px;
-    margin-bottom: 4px;
+    color: #222;
+    margin-top: 12px;
+    margin-bottom: 5px;
 }
 
 input, select {
     width: 100%;
-    padding: 12px 14px;
-    border: 2px solid #eef2f5;
+    padding: 11px 14px;
+    border: 2px solid #222222;
     border-radius: 14px;
     font-size: 14px;
     font-weight: 600;
     outline: none;
-    background: #f8fafc;
-    transition: all 0.2s ease;
+    background: #ffffff;
+    color: #1a1a1a;
 }
 
 input:focus, select:focus {
-    border-color: #7f00ff;
-    background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(127, 0, 255, 0.1);
+    border-color: #ff007f;
+    box-shadow: 0 0 0 3px rgba(255, 0, 127, 0.15);
 }
 
 .input-group {
@@ -197,30 +207,35 @@ input:focus, select:focus {
 }
 
 .input-group select {
-    flex: 1;
+    flex: 1.2;
 }
 
-/* ปุ่มคำนวณหลัก */
+/* ปุ่มคำนวณสีเหลืองเด่น */
 button {
     width: 100%;
-    background: linear-gradient(45deg, #00d2ff, #00f2fe);
-    color: #003b46;
+    background: #ffea00;
+    color: #1a1a1a;
     font-size: 18px;
     font-weight: 800;
-    padding: 16px;
-    border: none;
+    padding: 15px;
+    border: 2px solid #1a1a1a;
     border-radius: 20px;
     cursor: pointer;
-    box-shadow: 0 8px 25px rgba(0, 210, 255, 0.4);
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 0px #1a1a1a;
+    transition: all 0.15s ease;
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 210, 255, 0.6);
+    background: #ffd600;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0px #1a1a1a;
 }
 
-/* กล่องสรุปผลลัพธ์ */
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0px #1a1a1a;
+}
+
 #result-summary {
     margin-bottom: 20px;
     padding: 15px;
@@ -228,17 +243,16 @@ button:hover {
     font-size: 16px;
     font-weight: 800;
     display: none;
+    border: 2px solid #1a1a1a;
 }
 
 /* ==========================================
-   ส่วนหน้าสมาชิก (Members Page)
+   รายละเอียดการ์ดผู้จัดทำในหน้าสมาชิก
    ========================================== */
 .members-title {
     font-size: 28px;
-    font-weight: 900;
-    background: linear-gradient(45deg, #ff007f, #7f00ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    color: #1a1a1a;
     margin-bottom: 25px;
 }
 
@@ -254,32 +268,30 @@ button:hover {
 .member-card {
     background: #ffffff;
     border-radius: 20px;
-    padding: 15px 10px;
+    padding: 15px 8px;
     flex: 1;
-    min-width: 145px;
-    max-width: 175px;
+    min-width: 135px;
+    max-width: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     border: 2px solid #f0f0f0;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease;
 }
 
 .member-card:hover {
-    transform: translateY(-8px);
-    border-color: #ff007f;
-    box-shadow: 0 12px 25px rgba(255, 0, 127, 0.25);
+    transform: translateY(-5px);
 }
 
 .img-wrapper {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 12px;
-    border: 3px solid #ff007f;
-    box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3);
+    margin-bottom: 10px;
+    border: 2px solid #ff007f;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
 .member-img {
@@ -290,26 +302,23 @@ button:hover {
 
 .member-info {
     text-align: center;
-    width: 100%;
 }
 
 .member-num {
-    font-size: 14px;
-    font-weight: 900;
-    color: #7f00ff;
-    margin-bottom: 2px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #ff007f;
 }
 
 .member-name {
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 6px;
-    line-height: 1.35;
+    margin: 3px 0;
+    line-height: 1.3;
 }
 
 .member-sub {
-    font-size: 12px;
+    font-size: 11px;
     color: #666;
-    font-weight: 600;
 }
