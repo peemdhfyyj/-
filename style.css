@@ -21,6 +21,45 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* ==========================================
+   คืนค่าพื้นหลังสีเขียวดั้งเดิมเฉพาะหน้าสมาชิก
+   ========================================== */
+body.members-page {
+    background: #a8ff78 !important;
+    background: linear-gradient(to right, #78ffd6, #a8ff78) !important;
+    animation: none !important;
+}
+
+body.members-page .main-card {
+    background: #ffffff !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+.member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.member-card {
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.member-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ==========================================
+   สไตล์หลัก
+   ========================================== */
 .main-card {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
@@ -84,7 +123,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* แบนเนอร์แสดงผลลัพธ์คุ้มกว่า */
+/* กล่องสรุปผลลัพธ์ */
 #result-summary {
     display: none;
     margin: 15px 0 25px 0;
@@ -121,7 +160,6 @@ body {
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* กล่องสินค้า */
 .product-container {
     display: flex;
     gap: 20px;
@@ -181,7 +219,6 @@ input, select {
     gap: 8px;
 }
 
-/* ปุ่มคำนวณ */
 button {
     width: 100%;
     padding: 18px;
@@ -197,7 +234,6 @@ button {
     text-transform: uppercase;
 }
 
-/* ไฮไลต์ฝั่งที่คุ้มกว่า */
 .winner {
     transform: scale(1.06) !important;
     z-index: 5;
@@ -234,17 +270,4 @@ button {
 @keyframes pulseBadge {
     0% { transform: scale(1); }
     100% { transform: scale(1.1); }
-}
-/* คืนค่าธีมสีสำหรับหน้าสมาชิก */
-body.members-page {
-    background: #a8ff78;
-    background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);
-    background: linear-gradient(to right, #78ffd6, #a8ff78);
-    animation: none;
-    min-height: 100vh;
-}
-
-body.members-page .main-card {
-    background: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
