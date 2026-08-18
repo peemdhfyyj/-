@@ -3,49 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khum Mai? - คำนวณความคุ้มค่า</title>
+    <title>คุ้มไหม? - คำนวณความคุ้มค่าสินค้า</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="main-card">
+        <!-- โลโก้แบบโมเดิร์น -->
         <div class="logo-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="22" width="18" height="8" rx="4" fill="white" transform="rotate(-12 12 22)" />
+                <rect x="12" y="36" width="18" height="8" rx="4" fill="white" opacity="0.8" transform="rotate(-12 12 36)" />
+                <rect x="34" y="28" width="18" height="8" rx="4" fill="#ffea00" transform="rotate(-12 34 28)" />
+                <rect x="34" y="42" width="18" height="8" rx="4" fill="#ffea00" opacity="0.8" transform="rotate(-12 34 42)" />
+                <path d="M48 14L49.5 18.5L54 20L49.5 21.5L48 26L46.5 21.5L42 20L46.5 18.5L48 14Z" fill="white"/>
             </svg>
         </div>
 
         <div class="title-row">
-            <h1 class="title">Khum Mai?</h1>
+            <h1 class="title">คุ้มไหม?</h1>
             <a href="members.html" class="btn-members">👥 สมาชิก</a>
         </div>
-        <p class="subtitle">Check unit price, auto convert units ✨</p>
+        <p class="subtitle">เปรียบเทียบราคาต่อหน่วยเพื่อเลือกสิ่งที่ดีที่สุด</p>
 
-        <!-- กล่องข้อความผลลัพธ์ -->
+        <!-- สรุปผลลัพธ์ -->
         <div id="result-summary"></div>
 
+        <!-- สินค้า A และ B -->
         <div class="product-container">
             <!-- สินค้า A -->
             <div class="box" id="boxA">
                 <span class="badge-winner">👑 คุ้มที่สุด!</span>
-                <h3>📦 สินค้า A</h3>
+                <h3>สินค้า A</h3>
                 
-                <label for="priceA">ราคารวม (บาท)</label>
-                <input type="number" id="priceA" placeholder="เช่น 120" min="0">
+                <label>ราคา (บาท)</label>
+                <input type="number" id="priceA" placeholder="เช่น 100">
 
-                <label for="quantityA">จำนวนชิ้น/ซอง</label>
-                <input type="number" id="quantityA" value="1" min="1">
+                <label>จำนวนชิ้น (ถ้ามี)</label>
+                <input type="number" id="quantityA" placeholder="เช่น 1 (ไม่กรอก = 1)">
 
-                <label for="unitAmountA">ปริมาณต่อชิ้น</label>
+                <label>ปริมาณ / น้ำหนัก ต่อชิ้น</label>
                 <div class="input-group">
-                    <input type="number" id="unitAmountA" placeholder="เช่น 1.5" min="0">
+                    <input type="number" id="unitAmountA" placeholder="เช่น 500">
                     <select id="unitTypeA">
                         <option value="g">กรัม (g)</option>
                         <option value="kg">กิโลกรัม (kg)</option>
                         <option value="ml">มิลลิลิตร (ml)</option>
-                        <option value="l">ลิตร (l)</option>
+                        <option value="l">ลิตร (L)</option>
+                        <option value="pcs">ชิ้น/ซอง</option>
                     </select>
                 </div>
             </div>
@@ -53,28 +58,29 @@
             <!-- สินค้า B -->
             <div class="box" id="boxB">
                 <span class="badge-winner">👑 คุ้มที่สุด!</span>
-                <h3>🎁 สินค้า B</h3>
+                <h3>สินค้า B</h3>
 
-                <label for="priceB">ราคารวม (บาท)</label>
-                <input type="number" id="priceB" placeholder="เช่น 100" min="0">
+                <label>ราคา (บาท)</label>
+                <input type="number" id="priceB" placeholder="เช่น 150">
 
-                <label for="quantityB">จำนวนชิ้น/ซอง</label>
-                <input type="number" id="quantityB" value="1" min="1">
+                <label>จำนวนชิ้น (ถ้ามี)</label>
+                <input type="number" id="quantityB" placeholder="เช่น 1 (ไม่กรอก = 1)">
 
-                <label for="unitAmountB">ปริมาณต่อชิ้น</label>
+                <label>ปริมาณ / น้ำหนัก ต่อชิ้น</label>
                 <div class="input-group">
-                    <input type="number" id="unitAmountB" placeholder="เช่น 500" min="0">
+                    <input type="number" id="unitAmountB" placeholder="เช่น 900">
                     <select id="unitTypeB">
                         <option value="g">กรัม (g)</option>
                         <option value="kg">กิโลกรัม (kg)</option>
                         <option value="ml">มิลลิลิตร (ml)</option>
-                        <option value="l">ลิตร (l)</option>
+                        <option value="l">ลิตร (L)</option>
+                        <option value="pcs">ชิ้น/ซอง</option>
                     </select>
                 </div>
             </div>
         </div>
 
-        <button onclick="calculateCost()">⚡ คำนวณเปรียบเทียบเลย</button>
+        <button onclick="calculateCost()">⚡ คำนวณความคุ้มค่า</button>
     </div>
 
     <script src="script.js"></script>
