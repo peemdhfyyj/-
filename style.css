@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 * {
     box-sizing: border-box;
 }
@@ -21,9 +23,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* ==========================================
-   คืนค่าพื้นหลังสีเขียวดั้งเดิมเฉพาะหน้าสมาชิก
-   ========================================== */
+/* คืนค่าพื้นหลังสีเขียวดั้งเดิมเฉพาะหน้าสมาชิก */
 body.members-page {
     background: #a8ff78 !important;
     background: linear-gradient(to right, #78ffd6, #a8ff78) !important;
@@ -57,9 +57,7 @@ body.members-page .main-card {
     object-fit: cover;
 }
 
-/* ==========================================
-   สไตล์หลัก
-   ========================================== */
+/* สไตล์หลัก */
 .main-card {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
