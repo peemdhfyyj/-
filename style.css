@@ -1,7 +1,4 @@
-* {
-    box-sizing: border-box;
-}
-
+/* พื้นหลังและโครงสร้างหลัก */
 body {
     margin: 0;
     padding: 20px;
@@ -13,82 +10,59 @@ body {
     align-items: center;
 }
 
-/* กรอบการ์ดหลัก */
+/* การ์ดหลักตรงกลาง */
 .main-card {
     background: white;
     padding: 24px;
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 520px;
-    text-align: center;
+    max-width: 400px;
 }
 
-/* จำกัดขนาดรูปไอคอนโลโก้ไม่ให้ขยายใหญ่ยักษ์ */
-.main-card img, 
-img {
-    width: 56px !important;
-    height: 56px !important;
-    object-fit: contain;
-    border-radius: 14px;
-    margin: 0 auto 12px auto;
-    display: block;
-}
-
-/* จัดแบ่งกล่องสินค้า A และ B เป็น 2 คอลัมน์ขนานกัน */
-.main-card > div:nth-child(even),
-form,
-.grid-container {
+/* ตั้งค่าให้กล่องสินค้า A และ B อยู่คนละฝั่ง */
+.product-container {
     display: flex;
-    gap: 12px;
-    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
-/* สไตล์กล่องสินค้า A และ B */
-#boxA, #boxB,
-.box, .card-input {
+.box {
     flex: 1;
-    background: #f8fafc;
-    border: 1px solid #f1f5f9;
-    border-radius: 16px;
-    padding: 14px;
-    text-align: left;
 }
 
-/* สไตล์ช่องกรอกข้อมูล */
+/* ปรับแต่งช่องกรอกข้อมูลให้สวยงาม */
 input, select {
     width: 100%;
-    padding: 8px 10px;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    border: 1px solid #e2e8f0;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
     border-radius: 8px;
     font-family: 'Kanit', sans-serif;
-    font-size: 14px;
-    background: white;
-    outline: none;
 }
 
-/* ปุ่มคำนวณด้านล่าง */
-button, .btn-submit {
+/* ปุ่มคำนวณสีม่วง */
+button {
     width: 100%;
-    margin-top: 16px;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    padding: 12px;
+    background-color: #6366f1;
     color: white;
-    font-family: 'Kanit', sans-serif;
+    border: none;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/* แถบแสดงผลลัพธ์ */
-#finalResult {
-    margin-top: 14px;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: bold;
+button:hover {
+    background-color: #4f46e5;
+}
+
+/* สไตล์เมื่อเป็นผู้ชนะ (winner) */
+.winner {
+    border: 2px solid #22c55e;
+    background-color: #f0fdf4;
+    padding: 10px;
+    border-radius: 10px;
 }
