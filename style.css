@@ -345,3 +345,55 @@ button:hover {
         transform: translateY(-4px);
     }
 }
+/* ==========================================
+   อนิเมชั่นสินค้าที่คุ้มกว่า (เด่นสะดุดตา ลอยโดดเด่น)
+   ========================================== */
+.winner-card {
+    animation: superPopWinner 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+    border-width: 3px !important;
+    z-index: 5;
+}
+
+/* เอฟเฟกต์เฉพาะการ์ด A เมื่อคุ้มกว่า (ขอบเรืองแสงสีเขียวสด) */
+#boxA.winner-card {
+    border-color: #00e676 !important;
+    box-shadow: 0 10px 30px rgba(0, 230, 118, 0.5), 0 0 20px rgba(0, 230, 118, 0.3) !important;
+}
+
+/* เอฟเฟกต์เฉพาะการ์ด B เมื่อคุ้มกว่า (ขอบเรืองแสงสีชมพูสด) */
+#boxB.winner-card {
+    border-color: #ff2a75 !important;
+    box-shadow: 0 10px 30px rgba(255, 42, 117, 0.5), 0 0 20px rgba(255, 42, 117, 0.3) !important;
+}
+
+/* ป้ายคำว่า คุ้มที่สุด แสดงผลและขยับเด้งขึ้นลง */
+.winner-card .badge-winner {
+    display: block !important;
+    animation: superBounceBadge 0.8s ease infinite alternate !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 5px 14px !important;
+}
+
+/* จังหวะการเด้งขยายของการ์ด */
+@keyframes superPopWinner {
+    0% {
+        transform: scale(0.9) translateY(0);
+    }
+    60% {
+        transform: scale(1.08) translateY(-10px);
+    }
+    100% {
+        transform: scale(1.05) translateY(-8px);
+    }
+}
+
+/* จังหวะดุ๊กดิ๊กของป้ายคุ้มที่สุด */
+@keyframes superBounceBadge {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        transform: translateY(-6px) scale(1.1);
+    }
+}
