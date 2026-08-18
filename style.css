@@ -111,3 +111,21 @@ button:hover {
     border: 2px solid #10b981 !important;
     background-color: #ecfdf5 !important;
 }
+/* จัดให้คำว่า Khum Mai? อยู่ตรงกลางเป๊ะ */
+.title, h1 {
+    text-align: center !important;
+    width: 100%;
+    margin: 0 auto !important;
+}
+
+/* ปรับพื้นที่ส่วนหัวเรื่องให้จัดกึ่งกลาง */
+div:has(> .title) {
+    position: relative !important;
+    justify-content: center !important;
+}
+
+/* ย้ายปุ่มสมาชิกไปชิดขวา เพื่อไม่ให้ดันข้อความหลุดศูนย์กลาง */
+a[href*="members"] {
+    position: absolute !important;
+    right: 0 !important;
+}
