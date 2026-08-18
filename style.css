@@ -9,21 +9,21 @@
 }
 
 /* ==========================================
-   พื้นหลังสีรุ้งครบ 7 สี ขยับเปลี่ยนสีตลอดเวลา
+   พื้นหลังสีรุ้งครบ 7 สี ขยับเปลี่ยนสีไหลลื่นตลอดเวลา
    ========================================== */
 body, body.members-page {
     background: linear-gradient(
-        -45deg, 
+        135deg, 
         #8b00ff, /* ม่วง */
-        #4b0082, /* คราม */
         #0000ff, /* น้ำเงิน */
+        #00d2ff, /* ฟ้า */
         #00e676, /* เขียว */
         #ffea00, /* เหลือง */
         #ff7d00, /* แสด */
         #ff0055  /* แดง */
     ) !important;
-    background-size: 600% 600% !important;
-    animation: fullRainbowMove 10s ease infinite !important;
+    background-size: 300% 300% !important;
+    animation: fullRainbowMove 8s ease-in-out infinite !important;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -32,9 +32,21 @@ body, body.members-page {
 }
 
 @keyframes fullRainbowMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 50% 100%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 50% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 /* ==========================================
