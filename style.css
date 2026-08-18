@@ -13,80 +13,80 @@ body {
     align-items: center;
 }
 
-/* การ์ดหลักตรงกลาง */
+/* การ์ดหลักตรงกลาง - ขยายขนาดให้กว้างพอสำหรับ 2 คอลัมน์ */
 .main-card {
     background: white;
-    padding: 24px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 28px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 520px;
+    max-width: 680px !important;
     text-align: center;
 }
 
-/* คุมขนาดรูปไอคอนโลโก้ไม่ให้ขยายใหญ่ */
-.main-card img, img {
-    width: 54px !important;
-    height: 54px !important;
-    object-fit: cover;
-    border-radius: 12px;
+/* จัดส่วนโลโก้ SVG ตรงกลาง */
+.logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto 10px auto;
-    display: block;
 }
 
-/* คุมส่วนหัวข้อและรายละเอียด */
-.main-card h2, .main-card h3 {
-    margin: 5px 0;
+.logo-box svg {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    fill: white;
+    padding: 10px;
+    border-radius: 14px;
 }
 
-/* บังคับให้พื้นที่กล่องสินค้า A และ B เรียงคู่กันแนวนอน */
-#boxA, #boxB {
-    flex: 1;
-    min-width: 0;
+/* บังคับให้พื้นที่ส่วนสินค้า A และ B วางขนานกันแนวนอน 2 คอลัมน์ */
+.main-card > div:has(#boxA),
+.main-card > form,
+.product-container,
+div[style*="display: flex"] {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+    justify-content: space-between !important;
+}
+
+/* ตั้งค่ากล่องสินค้า A และ B ให้มีขนาดเท่ากัน */
+#boxA, #boxB,
+.box, .card-input {
+    flex: 1 !important;
+    width: 50% !important;
     background: #f8fafc;
     border: 1px solid #f1f5f9;
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: 16px;
+    padding: 16px;
     text-align: left;
 }
 
-/* ดักจับ Container ของกล่องสินค้าเพื่อเปิดใช้ Flexbox แนวนอน */
-.main-card > div:has(#boxA),
-.main-card > form,
-.product-container {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-/* ช่องใส่ปริมาณและเลือกหน่วยให้อยู่แนวนอนคู่กัน */
-.input-group, div:has(> select) {
-    display: flex;
-    gap: 6px;
-}
-
+/* ช่องกรอกข้อมูล */
 input, select {
     width: 100%;
-    padding: 8px;
+    padding: 8px 10px;
     margin-top: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     font-family: 'Kanit', sans-serif;
     font-size: 13px;
-    background: #ffffff;
+    background: white;
     outline: none;
 }
 
-/* ปุ่มคำนวณสีม่วงด้านล่าง */
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #6366f1;
-    color: white;
+/* ปุ่มคำนวณสีม่วงยาวเต็มความกว้าง */
+button, .btn-submit {
+    width: 100% !important;
+    margin-top: 16px;
+    padding: 14px;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
     font-family: 'Kanit', sans-serif;
     font-size: 16px;
     font-weight: bold;
@@ -95,10 +95,18 @@ button {
 }
 
 button:hover {
-    background-color: #4f46e5;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
 }
 
-/* ไฮไลต์ฝั่งที่ชนะ */
+/* แถบแสดงผลลัพธ์ */
+#finalResult {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* ไฮไลต์ผู้ชนะ */
 .winner {
     border: 2px solid #10b981 !important;
     background-color: #ecfdf5 !important;
