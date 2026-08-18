@@ -260,3 +260,22 @@ button:hover {
     color: white;
     background: #7F00FF;
 }
+/* สินค้า A - โทนสีเขียวนีออนสดใส */
+#boxA {
+    background: #E8FEEA !important;
+    border: 3px solid #22C55E !important;
+}
+
+/* สินค้า B - โทนสีส้ม/ชมพูพาสเทลสด */
+#boxB {
+    background: #FFF0F5 !important;
+    border: 3px solid #EC4899 !important;
+}
+
+/* เมื่อฝั่งไหนชนะ ให้เพิ่มขอบหนาและแสงเรืองสีทองชัดเจน */
+.winner {
+    border: 5px solid #EAB308 !important;
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.8) !important;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
