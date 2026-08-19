@@ -3,30 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KhumMai - Admin Dashboard</title>
+    <title>KhumMai - Admin Real-time Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid #3b82f6;
+            text-align: center;
+        }
+        .stat-card.mobile { border-left-color: #ec4899; }
+        .stat-card.desktop { border-left-color: #10b981; }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e293b;
+            margin: 5px 0;
+        }
+        .stat-percent {
+            font-size: 13px;
+            color: #64748b;
+        }
+        .progress-bar-bg {
+            background: #e2e8f0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            display: flex;
+        }
+        .progress-mobile { background: #ec4899; height: 100%; transition: width 0.3s; }
+        .progress-desktop { background: #10b981; height: 100%; transition: width 0.3s; }
+    </style>
 </head>
 <body class="members-page">
 
     <script>
-        // ระบบถามรหัสผ่านก่อนแสดงผล
+        // ล็อกรหัสผ่านสำหรับแอดมิน
         const adminPassword = prompt("🔒 กรุณากรอกรหัสผ่านสำหรับแอดมิน:");
-        if (adminPassword !== "1234") { // เปลี่ยน "1234" เป็นรหัสผ่านของคุณ
+        if (adminPassword !== "1234") {
             alert("❌ รหัสผ่านไม่ถูกต้อง!");
             window.location.href = "index.html";
         }
     </script>
 
-    <div class="members-container">
+    <div class="members-container" style="max-width: 900px;">
         <div style="text-align: left; margin-bottom: 15px;">
             <a href="index.html" class="btn-back">⬅️ กลับหน้าหลัก</a>
         </div>
 
-        <h2 class="members-title">🔴 รายการผู้เข้าใช้งาน Real-time (Admin)</h2>
-        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">
-            สถานะ: <span style="color: #22c55e; font-weight: bold;">● กำลังเชื่อมต่อสด</span>
-        </p>
+        <h2 class="members-title">🔴 สถิติผู้เข้าใช้งาน Real-time (Admin)</h2>
 
+        <!-- การ์ดสรุปยอดและสัดส่วนร้อยละ -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div>👥 ผู้เข้าชมทั้งหมด</div>
+                <div class="stat-number" id="totalUsers">0</div>
+                <div class="stat-percent">รายการทั้งหมด</div>
+            </div>
+            <div class="stat-card mobile">
+                <div>📱 เข้าชมผ่านมือถือ</div>
+                <div class="stat-number" id="mobileCount">0</div>
+                <div class="stat-percent" id="mobilePercent">คิดเป็น 0%</div>
+            </div>
+            <div class="stat-card desktop">
+                <div>💻 เข้าชมผ่านคอมพิวเตอร์</div>
+                <div class="stat-number" id="desktopCount">0</div>
+                <div class="stat-percent" id="desktopPercent">คิดเป็น 0%</div>
+            </div>
+        </div>
+
+        <!-- แถบเปรียบเทียบสัดส่วนร้อยละ (พาสเทล) -->
+        <div class="progress-bar-bg">
+            <div id="barMobile" class="progress-mobile" style="width: 0%;"></div>
+            <div id="barDesktop" class="progress-desktop" style="width: 0%;"></div>
+        </div>
+
+        <!-- ตารางแสดงประวัติสด -->
         <table class="admin-table">
             <thead>
                 <tr>
@@ -37,17 +99,17 @@
                 </tr>
             </thead>
             <tbody id="realtimeTableBody">
-                <tr><td colspan="4" style="text-align:center;">กำลังดึงข้อมูล...</td></tr>
+                <tr><td colspan="4" style="text-align:center;">กำลังเชื่อมต่อฐานข้อมูลสด...</td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Script สำหรับเชื่อมต่อและฟังข้อมูล Real-time จาก Firebase -->
+    <!-- Script เชื่อมต่อ Firebase และคำนวณร้อยละแบบ Real-time -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-      // ⚠️ นำค่า firebaseConfig ชุดเดียวกับ index.html มาวางตรงนี้[span_4](start_span)[span_4](end_span)
+      // ⚠️ วาง firebaseConfig ชุดเดียวกับหน้า index.html
       const firebaseConfig = {
         apiKey: "YOUR_API_KEY",
         authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -60,22 +122,52 @@
 
       const app = initializeApp(firebaseConfig);
       const database = getDatabase(app);
-
       const logsRef = ref(database, 'user_logs');
       
-      // ฟังข้อมูล Real-time เมื่อมีรายการใหม่ ข้อมูลจะเด้งขึ้นทันที[span_5](start_span)[span_5](end_span)
+      // ดึงข้อมูลสด และคำนวณจำนวนคน + คิดเป็นร้อยละ
       onValue(logsRef, (snapshot) => {
         const data = snapshot.val();
         const tableBody = document.getElementById('realtimeTableBody');
         
         if (!data) {
-          tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">ยังไม่มีประวัติการใช้งาน</td></tr>';
+          tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">ยังไม่มีข้อมูลผู้เข้าใช้</td></tr>';
           return;
         }
 
-        const logList = Object.values(data).reverse(); // เรียงจากใหม่ไปเก่า[span_6](start_span)[span_6](end_span)
+        const logsArray = Object.values(data);
+        const total = logsArray.length;
+
+        // นับจำนวนแยกตามอุปกรณ์
+        let mobileCount = 0;
+        let desktopCount = 0;
+
+        logsArray.forEach(log => {
+          if (log.device && log.device.includes('มือถือ')) {
+            mobileCount++;
+          } else {
+            desktopCount++;
+          }
+        });
+
+        // คำนวณร้อยละ (%)
+        const mobilePct = total > 0 ? ((mobileCount / total) * 100).toFixed(1) : 0;
+        const desktopPct = total > 0 ? ((desktopCount / total) * 100).toFixed(1) : 0;
+
+        // อัปเดตตัวเลขบนการ์ดสรุปผล
+        document.getElementById('totalUsers').innerText = total + " คน";
+        document.getElementById('mobileCount').innerText = mobileCount + " คน";
+        document.getElementById('mobilePercent').innerText = `คิดเป็น ${mobilePct}%`;
+        document.getElementById('desktopCount').innerText = desktopCount + " คน";
+        document.getElementById('desktopPercent').innerText = `คิดเป็น ${desktopPct}%`;
+
+        // ปรับความกว้างของแถบสัดส่วน
+        document.getElementById('barMobile').style.width = `${mobilePct}%`;
+        document.getElementById('barDesktop').style.width = `${desktopPct}%`;
+
+        // อัปเดตตารางรายการด้านล่าง
+        const logList = logsArray.reverse();
         tableBody.innerHTML = logList.map(log => {
-          const timeStr = log.timestamp ? new Date(log.timestamp).toLocaleString('th-TH') : 'เมื่อสักครู่';[span_7](start_span)[span_7](end_span)
+          const timeStr = log.timestamp ? new Date(log.timestamp).toLocaleString('th-TH') : 'เมื่อสักครู่';
           return `
             <tr>
               <td>${timeStr}</td>
@@ -89,4 +181,3 @@
     </script>
 </body>
 </html>
-
