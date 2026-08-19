@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KhumMai - รายชื่อผู้จัดทำ ม.5/7</title>
+    <title>KhumMai - รายชื่อผู้จัดทำ</title>
     <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap');
 
-        body.pastel-theme {
-            background: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);
-            background-attachment: fixed;
+        body {
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%) !important;
             min-height: 100vh;
             margin: 0;
-            padding: 30px 20px;
+            padding: 20px;
             font-family: 'Kanit', sans-serif;
             display: flex;
             justify-content: center;
@@ -21,123 +20,134 @@
             box-sizing: border-box;
         }
 
-        /* กล่องหลักแบบแนวนอน กว้างเต็มตา */
+        /* ขยายกล่องการ์ดหลักให้กว้างแนวนอน */
+        .members-container, 
         .members-container-horizontal {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            padding: 35px 30px;
-            border-radius: 28px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            max-width: 1200px;
-            width: 95%;
-            text-align: center;
+            background: #ffffff !important;
+            padding: 35px 25px !important;
+            border-radius: 28px !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+            max-width: 1050px !important;
+            width: 95% !important;
+            text-align: center !important;
+            margin: 0 auto !important;
         }
 
         .members-title {
             color: #2d3748;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-top: 0;
+            margin-bottom: 25px;
         }
 
-        /* จัดเรียงการ์ดแนวนอนด้วย Grid Responsive */
+        /* บังคับการจัดเรียง 5 ช่องแนวนอน */
         .members-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            justify-content: center;
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto;
+            padding-bottom: 10px;
         }
 
-        /* การ์ดแต่ละคน */
+        /* การ์ดแต่ละคนแบบแคบลงเพื่อให้ลงครบ 5 คน */
         .member-card-pastel {
-            background: #ffffff;
-            border-radius: 22px;
-            padding: 25px 15px;
-            box-shadow: 0 8px 20px rgba(255, 105, 135, 0.08);
-            border: 1px solid rgba(255, 192, 203, 0.4);
-            transition: all 0.3s ease;
+            background: #fafafa;
+            border-radius: 18px;
+            padding: 18px 8px;
+            flex: 1;
+            min-width: 150px;
+            border: 1px solid #f0f0f0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
         }
 
         .member-card-pastel:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(255, 105, 135, 0.2);
+            transform: translateY(-4px);
+            background: #ffffff;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
         }
 
-        /* กรอบรูปภาพพาสเทลตัดกับการ์ด */
+        /* กรอบรูปภาพพาสเทล */
         .avatar-wrapper {
-            position: relative;
-            padding: 5px;
+            padding: 4px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 50%, #ff80bf 100%);
-            box-shadow: 0 6px 15px rgba(161, 196, 253, 0.4);
-            margin-bottom: 15px;
+            background: linear-gradient(135deg, #a1c4fd 0%, #fecfef 100%);
+            margin-bottom: 12px;
         }
 
         .member-avatar {
-            width: 100px;
-            height: 100px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            border: 3px solid #ffffff;
+            border: 2px solid #ffffff;
         }
 
-        /* ลำดับข้อมูล: เลขที่ -> ชื่อ -> ชั้น */
         .member-number {
             font-size: 13px;
-            font-weight: 500;
-            color: #ff5277;
-            background: #fff0f3;
-            padding: 3px 12px;
-            border-radius: 12px;
-            margin-bottom: 8px;
+            font-weight: 600;
+            color: #ff6b81;
+            margin-bottom: 4px;
         }
 
         .member-name {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
-            color: #2d3748;
-            margin: 4px 0;
+            color: #333333;
+            margin: 2px 0;
+            line-height: 1.3;
         }
 
         .member-class {
-            font-size: 13px;
-            color: #718096;
-            margin-top: 2px;
+            font-size: 12px;
+            color: #888888;
+            margin-top: 4px;
         }
 
-        .btn-back-pastel {
+        /* ปุ่มกลับหน้าหลักทรงแคปซูลสีชมพูอยู่ด้านล่าง */
+        .btn-back-bottom {
             display: inline-block;
-            padding: 9px 22px;
-            background: #ffffff;
-            color: #4a5568;
-            border-radius: 20px;
+            margin-top: 25px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: #ffffff;
+            border-radius: 25px;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(255, 117, 140, 0.3);
+            transition: opacity 0.2s;
         }
 
-        .btn-back-pastel:hover {
-            background: #fff0f3;
-            color: #ff5277;
+        .btn-back-bottom:hover {
+            opacity: 0.9;
+        }
+
+        /* สไตล์รองรับมือถือถ้าน้องเปิดในจอเล็กมากๆ */
+        @media (max-width: 768px) {
+            .members-grid {
+                flex-wrap: wrap !important;
+            }
+            .member-card-pastel {
+                min-width: 130px;
+            }
         }
     </style>
 </head>
-<body class="pastel-theme">
+<body>
 
     <div class="members-container-horizontal">
-        <div style="text-align: left; margin-bottom: 10px;">
-            <a href="index.html" class="btn-back-pastel">⬅️ กลับหน้าหลัก</a>
-        </div>
+        <h2 class="members-title">👥 สมาชิกผู้จัดทำ ม.5/7</h2>
 
-        <h2 class="members-title">👥 รายชื่อผู้จัดทำ ม.5/7</h2>
-
-        <!-- รายการสมาชิกเรียงแนวนอน -->
+        <!-- การ์ด 5 คนเรียงแนวนอน -->
         <div class="members-grid">
             
             <!-- คนที่ 1 -->
@@ -145,9 +155,9 @@
                 <div class="avatar-wrapper">
                     <img src="p1.jpg" alt="นาย คมกริช แอ่งมูล" class="member-avatar">
                 </div>
-                <div class="member-number">เลขที่ 4</div>
+                <div class="member-number">1.</div>
                 <div class="member-name">นาย คมกริช แอ่งมูล</div>
-                <div class="member-class">ชั้น ม.5/7</div>
+                <div class="member-class">ม.5/7 | เลขที่ 4</div>
             </div>
 
             <!-- คนที่ 2 -->
@@ -155,9 +165,9 @@
                 <div class="avatar-wrapper">
                     <img src="p2.jpg" alt="นาย ธนภัทร มีเพียร" class="member-avatar">
                 </div>
-                <div class="member-number">เลขที่ 7</div>
+                <div class="member-number">2.</div>
                 <div class="member-name">นาย ธนภัทร มีเพียร</div>
-                <div class="member-class">ชั้น ม.5/7</div>
+                <div class="member-class">ม.5/7 | เลขที่ 7</div>
             </div>
 
             <!-- คนที่ 3 -->
@@ -165,9 +175,9 @@
                 <div class="avatar-wrapper">
                     <img src="p3.jpg" alt="นาย นพเก้า นางัว" class="member-avatar">
                 </div>
-                <div class="member-number">เลขที่ 11</div>
+                <div class="member-number">3.</div>
                 <div class="member-name">นาย นพเก้า นางัว</div>
-                <div class="member-class">ชั้น ม.5/7</div>
+                <div class="member-class">ม.5/7 | เลขที่ 11</div>
             </div>
 
             <!-- คนที่ 4 -->
@@ -175,9 +185,9 @@
                 <div class="avatar-wrapper">
                     <img src="p4.jpg" alt="นางสาว ธัญพร หาญคำ" class="member-avatar">
                 </div>
-                <div class="member-number">เลขที่ 23</div>
+                <div class="member-number">4.</div>
                 <div class="member-name">นางสาว ธัญพร หาญคำ</div>
-                <div class="member-class">ชั้น ม.5/7</div>
+                <div class="member-class">ม.5/7 | เลขที่ 23</div>
             </div>
 
             <!-- คนที่ 5 -->
@@ -185,15 +195,20 @@
                 <div class="avatar-wrapper">
                     <img src="p5.jpg" alt="นางสาว ณีรนุช ทนาพันธ์" class="member-avatar">
                 </div>
-                <div class="member-number">เลขที่ 31</div>
+                <div class="member-number">5.</div>
                 <div class="member-name">นางสาว ณีรนุช ทนาพันธ์</div>
-                <div class="member-class">ชั้น ม.5/7</div>
+                <div class="member-class">ม.5/7 | เลขที่ 31</div>
             </div>
 
         </div>
+
+        <!-- ปุ่มกลับหน้าหลักตรงกลางด้านล่าง -->
+        <div>
+            <a href="index.html" class="btn-back-bottom">🏠 กลับหน้าหลัก</a>
+        </div>
     </div>
 
-    <!-- Script เก็บบันทึกประวัติลง LocalStorage -->
+    <!-- Script สำหรับเก็บบันทึกประวัติการเข้าชม -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             recordAccess('เข้าชมหน้ารายชื่อสมาชิก');
