@@ -3,181 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KhumMai - ระบบเปรียบเทียบราคาสินค้า</title>
+    <title>KhumMai - รายชื่อผู้จัดทำ</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* สไตล์โทนสีพาสเทลสำหรับหน้าสมาชิก */
+        body.pastel-theme {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Kanit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .members-container-horizontal {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .members-title {
+            color: #4a4a4a;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        /* จัดเรียงการ์ดแนวนอน */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* การ์ดแต่ละคน */
+        .member-card-pastel {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 20px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 2px solid #fff0f5;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .member-card-pastel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        /* รูปโปรไฟล์วงกลม */
+        .member-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fecfef;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .member-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .member-detail {
+            font-size: 13px;
+            color: #777;
+            margin: 2px 0;
+        }
+
+        .btn-back-pastel {
+            display: inline-block;
+            padding: 8px 18px;
+            background: #ffffff;
+            color: #555;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: background 0.2s;
+        }
+
+        .btn-back-pastel:hover {
+            background: #fff5f8;
+        }
+    </style>
 </head>
-<body>
+<body class="pastel-theme">
 
-    <div class="main-card">
-        <!-- โลโก้ & ปุ่มนำทาง -->
-        <div class="logo-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
+    <div class="members-container-horizontal">
+        <div style="text-align: left; margin-bottom: 10px;">
+            <a href="index.html" class="btn-back-pastel">⬅️ กลับหน้าหลัก</a>
         </div>
 
-        <div class="title-row">
-            <h1 class="title">KhumMai</h1>
-            <a href="members.html" class="btn-members">👥 สมาชิก</a>
-        </div>
-        <p class="subtitle">ระบบเปรียบเทียบราคาและปริมาณสินค้าคุ้มค่าที่สุด</p>
+        <h2 class="members-title">👥 รายชื่อผู้จัดทำ</h2>
 
-        <!-- กรอบสินค้า A และ B -->
-        <div class="product-container">
-            <!-- สินค้า A -->
-            <div class="box" id="boxA">
-                <div class="badge-winner">คุ้มสุด!</div>
-                <h3>📦 สินค้า A</h3>
-                <label for="priceA">ราคา (บาท):</label>
-                <input type="number" id="priceA" placeholder="เช่น 50" step="any">
-
-                <label for="countA">จำนวน (ชิ้น/แพ็ค):</label>
-                <input type="number" id="countA" placeholder="เช่น 1" value="1" step="any">
-
-                <label for="amountA">ปริมาณต่อชิ้น:</label>
-                <div class="input-group">
-                    <input type="number" id="amountA" placeholder="เช่น 500" step="any">
-                    <select id="unitA">
-                        <option value="g">กรัม (g)</option>
-                        <option value="kg">กิโลกรัม (kg)</option>
-                        <option value="ml">มิลลิลิตร (ml)</option>
-                        <option value="l">ลิตร (L)</option>
-                        <option value="pcs">ชิ้น/ซอง</option>
-                    </select>
-                </div>
+        <!-- ตารางแสดงสมาชิกแนวนอน -->
+        <div class="members-grid">
+            
+            <!-- คนที่ 1 -->
+            <div class="member-card-pastel">
+                <img src="p1.jpg" alt="นาย คมกริช แอ่งมูล" class="member-avatar">
+                <div class="member-name">นาย คมกริช แอ่งมูล</div>
+                <div class="member-detail">ชั้น ม.5/7</div>
+                <div class="member-detail">เลขที่ 4</div>
             </div>
 
-            <!-- สินค้า B -->
-            <div class="box" id="boxB">
-                <div class="badge-winner">คุ้มสุด!</div>
-                <h3>📦 สินค้า B</h3>
-                <label for="priceB">ราคา (บาท):</label>
-                <input type="number" id="priceB" placeholder="เช่น 90" step="any">
-
-                <label for="countB">จำนวน (ชิ้น/แพ็ค):</label>
-                <input type="number" id="countB" placeholder="เช่น 1" value="1" step="any">
-
-                <label for="amountB">ปริมาณต่อชิ้น:</label>
-                <div class="input-group">
-                    <input type="number" id="amountB" placeholder="เช่น 1000" step="any">
-                    <select id="unitB">
-                        <option value="g">กรัม (g)</option>
-                        <option value="kg">กิโลกรัม (kg)</option>
-                        <option value="ml">มิลลิลิตร (ml)</option>
-                        <option value="l">ลิตร (L)</option>
-                        <option value="pcs">ชิ้น/ซอง</option>
-                    </select>
-                </div>
+            <!-- คนที่ 2 -->
+            <div class="member-card-pastel">
+                <img src="p2.jpg" alt="นาย ธนภัทร มีเพียร" class="member-avatar">
+                <div class="member-name">นาย ธนภัทร มีเพียร</div>
+                <div class="member-detail">ชั้น ม.5/7</div>
+                <div class="member-detail">เลขที่ 7</div>
             </div>
+
+            <!-- คนที่ 3 -->
+            <div class="member-card-pastel">
+                <img src="p3.jpg" alt="นาย นพเก้า นางัว" class="member-avatar">
+                <div class="member-name">นาย นพเก้า นางัว</div>
+                <div class="member-detail">ชั้น ม.5/7</div>
+                <div class="member-detail">เลขที่ 11</div>
+            </div>
+
+            <!-- คนที่ 4 -->
+            <div class="member-card-pastel">
+                <img src="p4.jpg" alt="นางสาว ธัญพร หาญคำ" class="member-avatar">
+                <div class="member-name">นางสาว ธัญพร หาญคำ</div>
+                <div class="member-detail">ชั้น ม.5/7</div>
+                <div class="member-detail">เลขที่ 23</div>
+            </div>
+
+            <!-- คนที่ 5 -->
+            <div class="member-card-pastel">
+                <img src="p5.jpg" alt="นางสาว ณีรนุช ทนาพันธ์" class="member-avatar">
+                <div class="member-name">นางสาว ณีรนุช ทนาพันธ์</div>
+                <div class="member-detail">ชั้น ม.5/7</div>
+                <div class="member-detail">เลขที่ 31</div>
+            </div>
+
         </div>
-
-        <!-- กล่องแสดงผลลัพธ์ -->
-        <div id="result-summary"></div>
-
-        <!-- ปุ่มคำนวณ -->
-        <button id="calcBtn" onclick="calculate()">⚡ เปรียบเทียบความคุ้มค่า</button>
     </div>
 
-    <!-- Script คำนวณฝั่งหน้าเว็บ -->
+    <!-- Script สำหรับเก็บบันทึกการเข้าชมลง LocalStorage -->
     <script>
-        function calculate() {
-            // เรียกใช้บันทึกการกดคำนวณขึ้น Firebase
-            if (window.recordRealtimeAccess) {
-                window.recordRealtimeAccess('กดคำนวณความคุ้มค่า');
-            }
-
-            const priceA = parseFloat(document.getElementById('priceA').value);
-            const countA = parseFloat(document.getElementById('countA').value) || 1;
-            const amountA = parseFloat(document.getElementById('amountA').value);
-            const unitA = document.getElementById('unitA').value;
-
-            const priceB = parseFloat(document.getElementById('priceB').value);
-            const countB = parseFloat(document.getElementById('countB').value) || 1;
-            const amountB = parseFloat(document.getElementById('amountB').value);
-            const unitB = document.getElementById('unitB').value;
-
-            const boxA = document.getElementById('boxA');
-            const boxB = document.getElementById('boxB');
-            const summary = document.getElementById('result-summary');
-
-            boxA.classList.remove('winner-card');
-            boxB.classList.remove('winner-card');
-            summary.style.display = 'none';
-
-            if (!priceA || !amountA || !priceB || !amountB) {
-                alert('กรุณากรอกราคาและปริมาณของทั้งสองสินค้าให้ครบถ้วนครับ');
-                return;
-            }
-
-            let totalAmountA = amountA * countA;
-            let totalAmountB = amountB * countB;
-
-            if (unitA === 'kg' || unitA === 'l') totalAmountA *= 1000;
-            if (unitB === 'kg' || unitB === 'l') totalAmountB *= 1000;
-
-            const unitPriceA = priceA / totalAmountA;
-            const unitPriceB = priceB / totalAmountB;
-
-            summary.style.display = 'block';
-
-            if (unitPriceA < unitPriceB) {
-                boxA.classList.add('winner-card');
-                const diff = (((unitPriceB - unitPriceA) / unitPriceB) * 100).toFixed(1);
-                summary.innerHTML = `🎉 <strong>สินค้า A คุ้มค่ากว่า!</strong> ประหยัดได้ประมาณ <strong>${diff}%</strong>`;
-                summary.style.background = '#e8f5e9';
-                summary.style.color = '#2e7d32';
-                summary.style.borderColor = '#a5d6a7';
-            } else if (unitPriceB < unitPriceA) {
-                boxB.classList.add('winner-card');
-                const diff = (((unitPriceA - unitPriceB) / unitPriceA) * 100).toFixed(1);
-                summary.innerHTML = `🎉 <strong>สินค้า B คุ้มค่ากว่า!</strong> ประหยัดได้ประมาณ <strong>${diff}%</strong>`;
-                summary.style.background = '#fff0f3';
-                summary.style.color = '#c2185b';
-                summary.style.borderColor = '#ff80ab';
-            } else {
-                summary.innerHTML = `⚖️ <strong>ทั้งสองสินค้ามีราคาและความคุ้มค่าเท่ากันครับ!</strong>`;
-                summary.style.background = '#e3f2fd';
-                summary.style.color = '#1565c0';
-                summary.style.borderColor = '#90caf9';
-            }
-        }
-    </script>
-
-    <!-- Script สำหรับส่งข้อมูลไปยัง Firebase -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-      import { getDatabase, ref, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-      // ⚠️ นำค่า firebaseConfig จากคอนโซล Firebase ของคุณมาวางตรงนี้[span_1](start_span)[span_1](end_span)
-      const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-        projectId: "YOUR_PROJECT",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "XXXXX",
-        appId: "XXXXX"
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const database = getDatabase(app);
-
-      window.recordRealtimeAccess = function(action) {
-        const logsRef = ref(database, 'user_logs');
-        push(logsRef, {
-          user: 'ผู้ใช้งานทั่วไป',
-          action: action,
-          device: navigator.userAgent.includes('Mobile') ? '📱 มือถือ' : '💻 คอมพิวเตอร์',
-          timestamp: serverTimestamp()
+        window.addEventListener('DOMContentLoaded', () => {
+            recordAccess('เข้าชมหน้ารายชื่อสมาชิก');
         });
-      };
 
-      // บันทึกการเข้าชมอัตโนมัติเมื่อเปิดหน้า[span_2](start_span)[span_2](end_span)
-      window.addEventListener('DOMContentLoaded', () => {
-        window.recordRealtimeAccess('เข้าชมหน้าหลัก');
-      });
+        function recordAccess(action) {
+            let logs = JSON.parse(localStorage.getItem('khummai_logs')) || [];
+            const newLog = {
+                user: 'ผู้ใช้งานทั่วไป',
+                action: action,
+                time: new Date().toLocaleString('th-TH')
+            };
+            logs.unshift(newLog);
+            localStorage.setItem('khummai_logs', JSON.stringify(logs));
+        }
     </script>
 </body>
 </html>
