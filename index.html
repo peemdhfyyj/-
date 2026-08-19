@@ -9,7 +9,7 @@
 <body>
 
     <div class="main-card">
-        <!-- โลโก้ & ปุ่มไปหน้าสมาชิก -->
+        <!-- โลโก้ & ปุ่มนำทาง -->
         <div class="logo-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -30,16 +30,12 @@
             <div class="box" id="boxA">
                 <div class="badge-winner">คุ้มสุด!</div>
                 <h3>📦 สินค้า A</h3>
-                
-                <!-- บรรทัดที่ 1: ราคา -->
                 <label for="priceA">ราคา (บาท):</label>
                 <input type="number" id="priceA" placeholder="เช่น 50" step="any">
 
-                <!-- บรรทัดที่ 2: จำนวน -->
                 <label for="countA">จำนวน (ชิ้น/แพ็ค):</label>
                 <input type="number" id="countA" placeholder="เช่น 1" value="1" step="any">
 
-                <!-- บรรทัดที่ 3: ปริมาณ -->
                 <label for="amountA">ปริมาณต่อชิ้น:</label>
                 <div class="input-group">
                     <input type="number" id="amountA" placeholder="เช่น 500" step="any">
@@ -57,16 +53,12 @@
             <div class="box" id="boxB">
                 <div class="badge-winner">คุ้มสุด!</div>
                 <h3>📦 สินค้า B</h3>
-                
-                <!-- บรรทัดที่ 1: ราคา -->
                 <label for="priceB">ราคา (บาท):</label>
                 <input type="number" id="priceB" placeholder="เช่น 90" step="any">
 
-                <!-- บรรทัดที่ 2: จำนวน -->
                 <label for="countB">จำนวน (ชิ้น/แพ็ค):</label>
                 <input type="number" id="countB" placeholder="เช่น 1" value="1" step="any">
 
-                <!-- บรรทัดที่ 3: ปริมาณ -->
                 <label for="amountB">ปริมาณต่อชิ้น:</label>
                 <div class="input-group">
                     <input type="number" id="amountB" placeholder="เช่น 1000" step="any">
@@ -88,9 +80,14 @@
         <button id="calcBtn" onclick="calculate()">⚡ เปรียบเทียบความคุ้มค่า</button>
     </div>
 
-    <!-- Script คำนวณความคุ้มค่า -->
+    <!-- Script คำนวณฝั่งหน้าเว็บ -->
     <script>
         function calculate() {
+            // เรียกใช้บันทึกการกดคำนวณขึ้น Firebase
+            if (window.recordRealtimeAccess) {
+                window.recordRealtimeAccess('กดคำนวณความคุ้มค่า');
+            }
+
             const priceA = parseFloat(document.getElementById('priceA').value);
             const countA = parseFloat(document.getElementById('countA').value) || 1;
             const amountA = parseFloat(document.getElementById('amountA').value);
@@ -114,7 +111,6 @@
                 return;
             }
 
-            // คำนวณปริมาณรวม = ปริมาณต่อชิ้น x จำนวนชิ้น
             let totalAmountA = amountA * countA;
             let totalAmountB = amountB * countB;
 
@@ -147,6 +143,41 @@
                 summary.style.borderColor = '#90caf9';
             }
         }
+    </script>
+
+    <!-- Script สำหรับส่งข้อมูลไปยัง Firebase -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getDatabase, ref, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+      // ⚠️ นำค่า firebaseConfig จากคอนโซล Firebase ของคุณมาวางตรงนี้[span_1](start_span)[span_1](end_span)
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+        projectId: "YOUR_PROJECT",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "XXXXX",
+        appId: "XXXXX"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      window.recordRealtimeAccess = function(action) {
+        const logsRef = ref(database, 'user_logs');
+        push(logsRef, {
+          user: 'ผู้ใช้งานทั่วไป',
+          action: action,
+          device: navigator.userAgent.includes('Mobile') ? '📱 มือถือ' : '💻 คอมพิวเตอร์',
+          timestamp: serverTimestamp()
+        });
+      };
+
+      // บันทึกการเข้าชมอัตโนมัติเมื่อเปิดหน้า[span_2](start_span)[span_2](end_span)
+      window.addEventListener('DOMContentLoaded', () => {
+        window.recordRealtimeAccess('เข้าชมหน้าหลัก');
+      });
     </script>
 </body>
 </html>
