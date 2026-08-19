@@ -3,91 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KhumMai - รายชื่อสมาชิกผู้พัฒนา</title>
+    <title>KhumMai - ระบบเปรียบเทียบราคาสินค้า</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="members-page">
+<body>
 
-    <div class="members-container">
-        <!-- ปุ่มย้อนกลับหน้าหลัก -->
-        <div style="text-align: left; margin-bottom: 15px;">
-            <a href="index.html" class="btn-back">⬅️ กลับหน้าหลัก</a>
-        </div>
-
+    <div class="main-card">
+        <!-- โลโก้ & ปุ่มนำทาง -->
         <div class="logo-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
             </svg>
         </div>
 
-        <h2 class="members-title">สมาชิกกลุ่ม KhumMai (ม.5/7)</h2>
+        <div class="title-row">
+            <h1 class="title">KhumMai</h1>
+            <a href="members.html" class="btn-members">👥 สมาชิก</a>
+        </div>
+        <p class="subtitle">ระบบเปรียบเทียบราคาและปริมาณสินค้าคุ้มค่าที่สุด</p>
 
-        <!-- การ์ดสมาชิก 5 คน -->
-        <div class="member-grid">
-            <!-- คนที่ 1 -->
-            <div class="member-card">
-                <div class="img-wrapper">
-                    <img src="p1.jpg" alt="คมกริช แอ่งมูล" class="member-img">
-                </div>
-                <div class="member-info">
-                    <span class="member-num">เลขที่ 4</span>
-                    <p class="member-name">นาย คมกริช แอ่งมูล</p>
-                    <span class="member-sub">ชั้น ม.5/7</span>
+        <!-- กรอบสินค้า A และ B -->
+        <div class="product-container">
+            <!-- สินค้า A -->
+            <div class="box" id="boxA">
+                <div class="badge-winner">คุ้มสุด!</div>
+                <h3>📦 สินค้า A</h3>
+                <label for="priceA">ราคา (บาท):</label>
+                <input type="number" id="priceA" placeholder="เช่น 50" step="any">
+
+                <label for="countA">จำนวน (ชิ้น/แพ็ค):</label>
+                <input type="number" id="countA" placeholder="เช่น 1" value="1" step="any">
+
+                <label for="amountA">ปริมาณต่อชิ้น:</label>
+                <div class="input-group">
+                    <input type="number" id="amountA" placeholder="เช่น 500" step="any">
+                    <select id="unitA">
+                        <option value="g">กรัม (g)</option>
+                        <option value="kg">กิโลกรัม (kg)</option>
+                        <option value="ml">มิลลิลิตร (ml)</option>
+                        <option value="l">ลิตร (L)</option>
+                        <option value="pcs">ชิ้น/ซอง</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- คนที่ 2 -->
-            <div class="member-card">
-                <div class="img-wrapper">
-                    <img src="p2.jpg" alt="ธนภัทร มีเพียร" class="member-img">
-                </div>
-                <div class="member-info">
-                    <span class="member-num">เลขที่ 7</span>
-                    <p class="member-name">นาย ธนภัทร มีเพียร</p>
-                    <span class="member-sub">ชั้น ม.5/7</span>
-                </div>
-            </div>
+            <!-- สินค้า B -->
+            <div class="box" id="boxB">
+                <div class="badge-winner">คุ้มสุด!</div>
+                <h3>📦 สินค้า B</h3>
+                <label for="priceB">ราคา (บาท):</label>
+                <input type="number" id="priceB" placeholder="เช่น 90" step="any">
 
-            <!-- คนที่ 3 -->
-            <div class="member-card">
-                <div class="img-wrapper">
-                    <img src="p3.jpg" alt="นพเก้า นางัว" class="member-img">
-                </div>
-                <div class="member-info">
-                    <span class="member-num">เลขที่ 11</span>
-                    <p class="member-name">นาย นพเก้า นางัว</p>
-                    <span class="member-sub">ชั้น ม.5/7</span>
-                </div>
-            </div>
+                <label for="countB">จำนวน (ชิ้น/แพ็ค):</label>
+                <input type="number" id="countB" placeholder="เช่น 1" value="1" step="any">
 
-            <!-- คนที่ 4 -->
-            <div class="member-card">
-                <div class="img-wrapper">
-                    <img src="p4.jpg" alt="ธัญพร หาญคำ" class="member-img">
-                </div>
-                <div class="member-info">
-                    <span class="member-num">เลขที่ 23</span>
-                    <p class="member-name">น.ส. ธัญพร หาญคำ</p>
-                    <span class="member-sub">ชั้น ม.5/7</span>
-                </div>
-            </div>
-
-            <!-- คนที่ 5 -->
-            <div class="member-card">
-                <div class="img-wrapper">
-                    <img src="p5.jpg" alt="ณีรนุช ทนาพันธ์" class="member-img">
-                </div>
-                <div class="member-info">
-                    <span class="member-num">เลขที่ 31</span>
-                    <p class="member-name">น.ส. ณีรนุช ทนาพันธ์</p>
-                    <span class="member-sub">ชั้น ม.5/7</span>
+                <label for="amountB">ปริมาณต่อชิ้น:</label>
+                <div class="input-group">
+                    <input type="number" id="amountB" placeholder="เช่น 1000" step="any">
+                    <select id="unitB">
+                        <option value="g">กรัม (g)</option>
+                        <option value="kg">กิโลกรัม (kg)</option>
+                        <option value="ml">มิลลิลิตร (ml)</option>
+                        <option value="l">ลิตร (L)</option>
+                        <option value="pcs">ชิ้น/ซอง</option>
+                    </select>
                 </div>
             </div>
         </div>
+
+        <!-- กล่องแสดงผลลัพธ์ -->
+        <div id="result-summary"></div>
+
+        <!-- ปุ่มคำนวณ -->
+        <button id="calcBtn" onclick="calculate()">⚡ เปรียบเทียบความคุ้มค่า</button>
     </div>
 
+    <!-- Script คำนวณฝั่งหน้าเว็บ -->
+    <script>
+        function calculate() {
+            // เรียกใช้บันทึกการกดคำนวณขึ้น Firebase
+            if (window.recordRealtimeAccess) {
+                window.recordRealtimeAccess('กดคำนวณความคุ้มค่า');
+            }
+
+            const priceA = parseFloat(document.getElementById('priceA').value);
+            const countA = parseFloat(document.getElementById('countA').value) || 1;
+            const amountA = parseFloat(document.getElementById('amountA').value);
+            const unitA = document.getElementById('unitA').value;
+
+            const priceB = parseFloat(document.getElementById('priceB').value);
+            const countB = parseFloat(document.getElementById('countB').value) || 1;
+            const amountB = parseFloat(document.getElementById('amountB').value);
+            const unitB = document.getElementById('unitB').value;
+
+            const boxA = document.getElementById('boxA');
+            const boxB = document.getElementById('boxB');
+            const summary = document.getElementById('result-summary');
+
+            boxA.classList.remove('winner-card');
+            boxB.classList.remove('winner-card');
+            summary.style.display = 'none';
+
+            if (!priceA || !amountA || !priceB || !amountB) {
+                alert('กรุณากรอกราคาและปริมาณของทั้งสองสินค้าให้ครบถ้วนครับ');
+                return;
+            }
+
+            let totalAmountA = amountA * countA;
+            let totalAmountB = amountB * countB;
+
+            if (unitA === 'kg' || unitA === 'l') totalAmountA *= 1000;
+            if (unitB === 'kg' || unitB === 'l') totalAmountB *= 1000;
+
+            const unitPriceA = priceA / totalAmountA;
+            const unitPriceB = priceB / totalAmountB;
+
+            summary.style.display = 'block';
+
+            if (unitPriceA < unitPriceB) {
+                boxA.classList.add('winner-card');
+                const diff = (((unitPriceB - unitPriceA) / unitPriceB) * 100).toFixed(1);
+                summary.innerHTML = `🎉 <strong>สินค้า A คุ้มค่ากว่า!</strong> ประหยัดได้ประมาณ <strong>${diff}%</strong>`;
+                summary.style.background = '#e8f5e9';
+                summary.style.color = '#2e7d32';
+                summary.style.borderColor = '#a5d6a7';
+            } else if (unitPriceB < unitPriceA) {
+                boxB.classList.add('winner-card');
+                const diff = (((unitPriceA - unitPriceB) / unitPriceA) * 100).toFixed(1);
+                summary.innerHTML = `🎉 <strong>สินค้า B คุ้มค่ากว่า!</strong> ประหยัดได้ประมาณ <strong>${diff}%</strong>`;
+                summary.style.background = '#fff0f3';
+                summary.style.color = '#c2185b';
+                summary.style.borderColor = '#ff80ab';
+            } else {
+                summary.innerHTML = `⚖️ <strong>ทั้งสองสินค้ามีราคาและความคุ้มค่าเท่ากันครับ!</strong>`;
+                summary.style.background = '#e3f2fd';
+                summary.style.color = '#1565c0';
+                summary.style.borderColor = '#90caf9';
+            }
+        }
+    </script>
+
+    <!-- Script สำหรับส่งข้อมูลไปยัง Firebase -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getDatabase, ref, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+      // ⚠️ นำค่า firebaseConfig จากคอนโซล Firebase ของคุณมาวางตรงนี้[span_1](start_span)[span_1](end_span)
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+        projectId: "YOUR_PROJECT",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "XXXXX",
+        appId: "XXXXX"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      window.recordRealtimeAccess = function(action) {
+        const logsRef = ref(database, 'user_logs');
+        push(logsRef, {
+          user: 'ผู้ใช้งานทั่วไป',
+          action: action,
+          device: navigator.userAgent.includes('Mobile') ? '📱 มือถือ' : '💻 คอมพิวเตอร์',
+          timestamp: serverTimestamp()
+        });
+      };
+
+      // บันทึกการเข้าชมอัตโนมัติเมื่อเปิดหน้า[span_2](start_span)[span_2](end_span)
+      window.addEventListener('DOMContentLoaded', () => {
+        window.recordRealtimeAccess('เข้าชมหน้าหลัก');
+      });
+    </script>
 </body>
 </html>
