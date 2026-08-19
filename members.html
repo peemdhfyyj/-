@@ -8,29 +8,47 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap');
 
-        body {
-            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%) !important;
-            min-height: 100vh;
+        /* สีพื้นหลังพาสเทลเรียบเนียนสม่ำเสมอทั้งหน้า */
+        html, body {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #ffb3c1 0%, #fec3a6 50%, #e8aeef 100%) !important;
+            background-attachment: fixed !important;
+        }
+
+        body.pastel-theme, body {
             display: flex;
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
+            padding: 20px;
         }
 
-        /* ขยายกล่องการ์ดหลักให้กว้างแนวนอน */
-        .members-container, 
+        /* กล่องขาวใหญ่แบบมีมิติเลเยอร์ (Layered Shadow & Glassmorphism) */
         .members-container-horizontal {
-            background: #ffffff !important;
-            padding: 35px 25px !important;
-            border-radius: 28px !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+            background: rgba(255, 255, 255, 0.92) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 38px 28px !important;
+            border-radius: 32px !important;
+            
+            /* เลเยอร์เงาซ้อน 3 ชั้นให้ดูลอยนุ่มนวลมีมิติ */
+            box-shadow: 
+                0 10px 15px -3px rgba(0, 0, 0, 0.05),
+                0 20px 35px -5px rgba(235, 115, 140, 0.22),
+                0 30px 60px -10px rgba(0, 0, 0, 0.12) !important;
+            
+            /* ขอบกระจกใส */
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            
             max-width: 1050px !important;
             width: 95% !important;
             text-align: center !important;
             margin: 0 auto !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .members-title {
@@ -41,7 +59,7 @@
             margin-bottom: 25px;
         }
 
-        /* บังคับการจัดเรียง 5 ช่องแนวนอน */
+        /* จัดเรียงแนวนอน 5 การ์ด */
         .members-grid {
             display: flex !important;
             flex-direction: row !important;
@@ -53,85 +71,88 @@
             padding-bottom: 10px;
         }
 
-        /* การ์ดแต่ละคนแบบแคบลงเพื่อให้ลงครบ 5 คน */
         .member-card-pastel {
-            background: #fafafa;
-            border-radius: 18px;
-            padding: 18px 8px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px 10px;
             flex: 1;
             min-width: 150px;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #f0e6eb;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.25s ease;
         }
 
         .member-card-pastel:hover {
-            transform: translateY(-4px);
-            background: #ffffff;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(255, 78, 114, 0.15);
+            border-color: #ffd1dc;
         }
 
-        /* กรอบรูปภาพพาสเทล */
+        /* กรอบรูปภาพสีเข้มสดใส ตัดกับสีพาสเทล */
         .avatar-wrapper {
-            padding: 4px;
+            position: relative;
+            padding: 3px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #a1c4fd 0%, #fecfef 100%);
+            background: linear-gradient(135deg, #ff4e72 0%, #ff8359 100%);
+            box-shadow: 0 5px 15px rgba(255, 78, 114, 0.35);
             margin-bottom: 12px;
         }
 
         .member-avatar {
-            width: 75px;
-            height: 75px;
+            width: 78px;
+            height: 78px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            border: 2px solid #ffffff;
+            border: 3px solid #ffffff;
         }
 
         .member-number {
             font-size: 13px;
             font-weight: 600;
-            color: #ff6b81;
+            color: #ff4e72;
             margin-bottom: 4px;
         }
 
         .member-name {
             font-size: 14px;
             font-weight: 600;
-            color: #333333;
+            color: #2d3748;
             margin: 2px 0;
             line-height: 1.3;
         }
 
         .member-class {
             font-size: 12px;
-            color: #888888;
+            color: #718096;
             margin-top: 4px;
+            font-weight: 400;
         }
 
-        /* ปุ่มกลับหน้าหลักทรงแคปซูลสีชมพูอยู่ด้านล่าง */
+        /* ปุ่มกลับหน้าหลักทรงแคปซูลมีมิติ */
         .btn-back-bottom {
             display: inline-block;
             margin-top: 25px;
-            padding: 10px 24px;
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            padding: 10px 28px;
+            background: linear-gradient(135deg, #ff4e72 0%, #ff768e 100%);
             color: #ffffff;
             border-radius: 25px;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            box-shadow: 0 4px 12px rgba(255, 117, 140, 0.3);
-            transition: opacity 0.2s;
+            box-shadow: 0 6px 18px rgba(255, 78, 114, 0.35);
+            transition: all 0.25s ease;
         }
 
         .btn-back-bottom:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(255, 78, 114, 0.45);
         }
 
-        /* สไตล์รองรับมือถือถ้าน้องเปิดในจอเล็กมากๆ */
         @media (max-width: 768px) {
             .members-grid {
                 flex-wrap: wrap !important;
@@ -142,7 +163,7 @@
         }
     </style>
 </head>
-<body>
+<body class="pastel-theme">
 
     <div class="members-container-horizontal">
         <h2 class="members-title">👥 สมาชิกผู้จัดทำ ม.5/7</h2>
@@ -157,7 +178,7 @@
                 </div>
                 <div class="member-number">1.</div>
                 <div class="member-name">นาย คมกริช แอ่งมูล</div>
-                <div class="member-class">ม.5/7 | เลขที่ 4</div>
+                <div class="member-class">เลขที่ 4</div>
             </div>
 
             <!-- คนที่ 2 -->
@@ -167,7 +188,7 @@
                 </div>
                 <div class="member-number">2.</div>
                 <div class="member-name">นาย ธนภัทร มีเพียร</div>
-                <div class="member-class">ม.5/7 | เลขที่ 7</div>
+                <div class="member-class">เลขที่ 7</div>
             </div>
 
             <!-- คนที่ 3 -->
@@ -177,7 +198,7 @@
                 </div>
                 <div class="member-number">3.</div>
                 <div class="member-name">นาย นพเก้า นางัว</div>
-                <div class="member-class">ม.5/7 | เลขที่ 11</div>
+                <div class="member-class">เลขที่ 11</div>
             </div>
 
             <!-- คนที่ 4 -->
@@ -187,7 +208,7 @@
                 </div>
                 <div class="member-number">4.</div>
                 <div class="member-name">นางสาว ธัญพร หาญคำ</div>
-                <div class="member-class">ม.5/7 | เลขที่ 23</div>
+                <div class="member-class">เลขที่ 23</div>
             </div>
 
             <!-- คนที่ 5 -->
@@ -197,18 +218,18 @@
                 </div>
                 <div class="member-number">5.</div>
                 <div class="member-name">นางสาว ณีรนุช ทนาพันธ์</div>
-                <div class="member-class">ม.5/7 | เลขที่ 31</div>
+                <div class="member-class">เลขที่ 31</div>
             </div>
 
         </div>
 
-        <!-- ปุ่มกลับหน้าหลักตรงกลางด้านล่าง -->
+        <!-- ปุ่มกลับหน้าหลัก -->
         <div>
             <a href="index.html" class="btn-back-bottom">🏠 กลับหน้าหลัก</a>
         </div>
     </div>
 
-    <!-- Script สำหรับเก็บบันทึกประวัติการเข้าชม -->
+    <!-- Script บันทึกการเข้าชม -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             recordAccess('เข้าชมหน้ารายชื่อสมาชิก');
