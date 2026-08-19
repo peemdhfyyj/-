@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhumMai - Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="members-page">
+
+    <script>
+        // ระบบถามรหัสผ่านก่อนแสดงผล
+        const adminPassword = prompt("🔒 กรุณากรอกรหัสผ่านสำหรับแอดมิน:");
+        if (adminPassword !== "1234") { // เปลี่ยน "1234" เป็นรหัสผ่านของคุณ
+            alert("❌ รหัสผ่านไม่ถูกต้อง!");
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <div class="members-container">
+        <div style="text-align: left; margin-bottom: 15px;">
+            <a href="index.html" class="btn-back">⬅️ กลับหน้าหลัก</a>
+        </div>
+
+        <h2 class="members-title">🔴 รายการผู้เข้าใช้งาน Real-time (Admin)</h2>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">
+            สถานะ: <span style="color: #22c55e; font-weight: bold;">● กำลังเชื่อมต่อสด</span>
+        </p>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>เวลา</th>
+                    <th>ผู้ใช้งาน</th>
+                    <th>อุปกรณ์</th>
+                    <th>กิจกรรม</th>
+                </tr>
+            </thead>
+            <tbody id="realtimeTableBody">
+                <tr><td colspan="4" style="text-align:center;">กำลังดึงข้อมูล...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Script สำหรับเชื่อมต่อและฟังข้อมูล Real-time จาก Firebase -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+      // ⚠️ นำค่า firebaseConfig ชุดเดียวกับ index.html มาวางตรงนี้[span_4](start_span)[span_4](end_span)
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+        projectId: "YOUR_PROJECT",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "XXXXX",
+        appId: "XXXXX"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      const logsRef = ref(database, 'user_logs');
+      
+      // ฟังข้อมูล Real-time เมื่อมีรายการใหม่ ข้อมูลจะเด้งขึ้นทันที[span_5](start_span)[span_5](end_span)
+      onValue(logsRef, (snapshot) => {
+        const data = snapshot.val();
+        const tableBody = document.getElementById('realtimeTableBody');
+        
+        if (!data) {
+          tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">ยังไม่มีประวัติการใช้งาน</td></tr>';
+          return;
+        }
+
+        const logList = Object.values(data).reverse(); // เรียงจากใหม่ไปเก่า[span_6](start_span)[span_6](end_span)
+        tableBody.innerHTML = logList.map(log => {
+          const timeStr = log.timestamp ? new Date(log.timestamp).toLocaleString('th-TH') : 'เมื่อสักครู่';[span_7](start_span)[span_7](end_span)
+          return `
+            <tr>
+              <td>${timeStr}</td>
+              <td>${log.user}</td>
+              <td>${log.device}</td>
+              <td><strong style="color: #0284c7;">${log.action}</strong></td>
+            </tr>
+          `;
+        }).join('');
+      });
+    </script>
+</body>
+</html>
+
