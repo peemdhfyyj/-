@@ -6,46 +6,154 @@
     <title>KhumMai - Admin Real-time Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap');
+
+        body.pastel-theme {
+            background: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 20px;
+            font-family: 'Kanit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
+
+        /* ขยายกล่องหลักให้เป็นแนวนอนกว้างเต็มตา */
+        .admin-container-horizontal {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 35px 30px;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            max-width: 1100px;
+            width: 95%;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .admin-title {
+            color: #2d3748;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* จัดเรียงการ์ดสถิติเป็นแนวนอน 3 คอลัมน์ */
         .dashboard-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
         }
+
         .stat-card {
             background: #ffffff;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-left: 5px solid #3b82f6;
+            padding: 20px 15px;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #3b82f6;
             text-align: center;
         }
+
         .stat-card.mobile { border-left-color: #ec4899; }
         .stat-card.desktop { border-left-color: #10b981; }
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1e293b;
-            margin: 5px 0;
+
+        .stat-title {
+            font-size: 15px;
+            color: #4a5568;
+            font-weight: 500;
         }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 8px 0;
+        }
+
         .stat-percent {
             font-size: 13px;
-            color: #64748b;
+            color: #718096;
         }
+
+        /* แถบกราฟเปอร์เซ็นต์ */
         .progress-bar-bg {
             background: #e2e8f0;
-            height: 10px;
-            border-radius: 5px;
+            height: 12px;
+            border-radius: 6px;
             overflow: hidden;
-            margin-top: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             display: flex;
         }
-        .progress-mobile { background: #ec4899; height: 100%; transition: width 0.3s; }
-        .progress-desktop { background: #10b981; height: 100%; transition: width 0.3s; }
+
+        .progress-mobile { background: #ec4899; height: 100%; transition: width 0.4s ease; }
+        .progress-desktop { background: #10b981; height: 100%; transition: width 0.4s ease; }
+
+        /* ปุ่มกลับหน้าหลัก */
+        .btn-back-pastel {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #ffffff;
+            color: #4a5568;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .btn-back-pastel:hover {
+            background: #fff0f3;
+            color: #ff5277;
+        }
+
+        /* สไตล์ตารางแบบแนวนอน */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .admin-table th {
+            background: #f8fafc;
+            color: #475569;
+            padding: 14px;
+            font-size: 14px;
+            text-align: left;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .admin-table td {
+            padding: 12px 14px;
+            font-size: 14px;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
-<body class="members-page">
+<body class="pastel-theme">
 
     <script>
         // ล็อกรหัสผ่านสำหรับแอดมิน
@@ -56,55 +164,56 @@
         }
     </script>
 
-    <div class="members-container" style="max-width: 900px;">
-        <div style="text-align: left; margin-bottom: 15px;">
-            <a href="index.html" class="btn-back">⬅️ กลับหน้าหลัก</a>
+    <div class="admin-container-horizontal">
+        <div class="admin-header">
+            <h2 class="admin-title">🔴 สถิติผู้เข้าใช้งาน Real-time (Admin)</h2>
+            <a href="index.html" class="btn-back-pastel">⬅️ กลับหน้าหลัก</a>
         </div>
 
-        <h2 class="members-title">🔴 สถิติผู้เข้าใช้งาน Real-time (Admin)</h2>
-
-        <!-- การ์ดสรุปยอดและสัดส่วนร้อยละ -->
+        <!-- การ์ดสรุปสถิติเรียงแนวนอน 3 ช่อง -->
         <div class="dashboard-stats">
             <div class="stat-card">
-                <div>👥 ผู้เข้าชมทั้งหมด</div>
+                <div class="stat-title">👥 ผู้เข้าชมทั้งหมด</div>
                 <div class="stat-number" id="totalUsers">0</div>
                 <div class="stat-percent">รายการทั้งหมด</div>
             </div>
             <div class="stat-card mobile">
-                <div>📱 เข้าชมผ่านมือถือ</div>
+                <div class="stat-title">📱 เข้าชมผ่านมือถือ</div>
                 <div class="stat-number" id="mobileCount">0</div>
                 <div class="stat-percent" id="mobilePercent">คิดเป็น 0%</div>
             </div>
             <div class="stat-card desktop">
-                <div>💻 เข้าชมผ่านคอมพิวเตอร์</div>
+                <div class="stat-title">💻 เข้าชมผ่านคอมพิวเตอร์</div>
                 <div class="stat-number" id="desktopCount">0</div>
                 <div class="stat-percent" id="desktopPercent">คิดเป็น 0%</div>
             </div>
         </div>
 
-        <!-- แถบเปรียบเทียบสัดส่วนร้อยละ (พาสเทล) -->
+        <!-- แถบสัดส่วนร้อยละ -->
         <div class="progress-bar-bg">
             <div id="barMobile" class="progress-mobile" style="width: 0%;"></div>
             <div id="barDesktop" class="progress-desktop" style="width: 0%;"></div>
         </div>
 
-        <!-- ตารางแสดงประวัติสด -->
-        <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>เวลา</th>
-                    <th>ผู้ใช้งาน</th>
-                    <th>อุปกรณ์</th>
-                    <th>กิจกรรม</th>
-                </tr>
-            </thead>
-            <tbody id="realtimeTableBody">
-                <tr><td colspan="4" style="text-align:center;">กำลังเชื่อมต่อฐานข้อมูลสด...</td></tr>
-            </tbody>
-        </table>
+        <!-- ตารางประวัติผู้เข้าใช้งาน -->
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>เวลา</th>
+                        <th>ผู้ใช้งาน</th>
+                        <th>อุปกรณ์</th>
+                        <th>กิจกรรม</th>
+                    </tr>
+                </thead>
+                <tbody id="realtimeTableBody">
+                    <tr><td colspan="4" style="text-align:center;">กำลังเชื่อมต่อฐานข้อมูลสด...</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- Script เชื่อมต่อ Firebase และคำนวณร้อยละแบบ Real-time -->
+    <!-- Script เชื่อมต่อ Firebase และคำนวณสถิติแบบ Real-time -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
       import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -137,7 +246,6 @@
         const logsArray = Object.values(data);
         const total = logsArray.length;
 
-        // นับจำนวนแยกตามอุปกรณ์
         let mobileCount = 0;
         let desktopCount = 0;
 
@@ -149,22 +257,18 @@
           }
         });
 
-        // คำนวณร้อยละ (%)
         const mobilePct = total > 0 ? ((mobileCount / total) * 100).toFixed(1) : 0;
         const desktopPct = total > 0 ? ((desktopCount / total) * 100).toFixed(1) : 0;
 
-        // อัปเดตตัวเลขบนการ์ดสรุปผล
         document.getElementById('totalUsers').innerText = total + " คน";
         document.getElementById('mobileCount').innerText = mobileCount + " คน";
         document.getElementById('mobilePercent').innerText = `คิดเป็น ${mobilePct}%`;
         document.getElementById('desktopCount').innerText = desktopCount + " คน";
         document.getElementById('desktopPercent').innerText = `คิดเป็น ${desktopPct}%`;
 
-        // ปรับความกว้างของแถบสัดส่วน
         document.getElementById('barMobile').style.width = `${mobilePct}%`;
         document.getElementById('barDesktop').style.width = `${desktopPct}%`;
 
-        // อัปเดตตารางรายการด้านล่าง
         const logList = logsArray.reverse();
         tableBody.innerHTML = logList.map(log => {
           const timeStr = log.timestamp ? new Date(log.timestamp).toLocaleString('th-TH') : 'เมื่อสักครู่';
@@ -173,7 +277,7 @@
               <td>${timeStr}</td>
               <td>${log.user}</td>
               <td>${log.device}</td>
-              <td><strong style="color: #0284c7;">${log.action}</strong></td>
+              <td><strong style="color: #2563eb;">${log.action}</strong></td>
             </tr>
           `;
         }).join('');
